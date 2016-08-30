@@ -1,0 +1,40 @@
+<?php
+check_directly_access();
+
+add_action('init', 'create_new_post_type');
+function create_new_post_type() {
+    register_taxonomy_for_object_type('category', 'custom');
+    register_taxonomy_for_object_type('post_tag', 'custom');
+
+    register_post_type('custom',
+        array(
+        'labels' => array(
+            'name'                  => _t('Custom Post'),
+            'singular_name'         => _t('Custom Post'),
+            'add_new'               => _t('Add New'),
+            'add_new_item'          => _t('Add New Custom Post'),
+            'edit'                  => _t('Edit'),
+            'edit_item'             => _t('Edit Custom Post'),
+            'new_item'              => _t('New Custom Post'),
+            'view'                  => _t('View Custom Post'),
+            'view_item'             => _t('View Custom Post'),
+            'search_items'          => _t('Search Custom Post'),
+            'not_found'             => _t('No Custom Posts found'),
+            'not_found_in_trash'    => _t('No Custom Posts found in Trash')
+        ),
+        'public' => true,
+        'hierarchical' => true,
+        'has_archive' => true,
+        'supports' => array(
+            'title',
+            'editor',
+            'excerpt',
+            'thumbnail'
+        ),
+        'can_export' => true,
+        'taxonomies' => array(
+            'post_tag',
+            'category'
+        )
+    ));
+}

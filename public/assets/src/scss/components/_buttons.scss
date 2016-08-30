@@ -1,0 +1,61 @@
+.btn {
+    background-color: $btn-bgcolor;
+    border: 3px solid $btn-bordercolor;
+    color: $btn-color;
+    display: inline-block;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.6;
+    padding: 0 1em;
+    transition: background 0.25s, color 0.25s;
+    text-decoration: none;
+    @include on-event {
+      outline: 0 none;
+      text-decoration: none;
+    }
+
+    &:not([disabled]) {
+        cursor: pointer;
+    }
+
+    &:hover,
+    &:active {
+        border-color: $btn-hover-bgcolor;
+        background-color: $btn-hover-bordercolor;
+        color: $btn-hover-color;
+    }
+
+    &.btn--reversed {
+        border-color: $btn-hover-bgcolor;
+        background-color: $btn-hover-bordercolor;
+        color: $btn-hover-color;
+
+        &:hover,
+        &:active {
+            border-color: $btn-bordercolor;
+            background-color: $btn-bgcolor;
+            color: $btn-color;
+        }
+    }
+
+    &:disabled,
+    &.btn--disabled {
+        border-color: lighten($btn-bordercolor, $btn-disabled-lighten-amount);
+        background-color: lighten($btn-bgcolor, $btn-disabled-lighten-amount);
+        color: lighten($btn-color, $btn-disabled-lighten-amount);
+
+        &.btn--reversed {
+            border-color: lighten($btn-hover-bgcolor, $btn-disabled-lighten-amount);
+            background-color: lighten($btn-hover-bordercolor, $btn-disabled-lighten-amount);
+            color: lighten($btn-hover-color, $btn-disabled-lighten-amount);
+        }
+    }
+
+    @include mq('desktop') {
+        font-size: 2rem;
+    }
+
+    @include mq('large') {
+        font-size: 2.2rem;
+    }
+}

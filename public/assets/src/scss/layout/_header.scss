@@ -1,0 +1,12 @@
+.logo {
+    @include gutter('medium', 'medium');
+    text-align: center;
+
+    a {
+        display: inline-block;
+    }
+
+    svg {
+        max-width: 100%;
+    }
+}

@@ -1,0 +1,48 @@
+var
+fs    = require('fs'),
+merge = require('merge-stream');
+
+function version( length ) {
+	if ( typeof length === 'undefined' ) {
+		length = 16;
+	}
+
+    var
+	chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
+	ver   = '';
+
+    for ( var i = 0; i < length; i++ )
+        ver += chars.charAt( Math.floor( Math.random() * chars.length ) );
+
+    return ver;
+}
+
+module.exports = function (gulp, plugins, config, paths) {
+    return function () {
+    	var
+		tasks      = [],
+		phpcontent = '<?php\n';
+
+		tasks.push(gulp.src(config.version.clean)
+            .pipe(plugins.clean()));
+
+    	for ( var varname in config.version.src ) {
+    		var
+			src      = config.version.src[varname],
+			ver      = version(),
+			sep      = src.lastIndexOf('.'),
+			filename = src.substr(0, sep),
+			ext      = src.substr(sep);
+
+    		tasks.push(gulp.src(src)
+	            .pipe(plugins.rename(filename + '.' + ver + ext))
+	            .pipe(gulp.dest('.')));
+
+    		phpcontent += 'define("' + varname + '_VERSION", "' + ver + '");\n';
+        }
+
+		fs.writeFileSync('./assets_versions.php', phpcontent);
+
+    	return merge(tasks);
+    };
+};

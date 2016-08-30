@@ -1,0 +1,13 @@
+@mixin fontface($name, $src, $weight: normal, $style: normal) {
+    @font-face {
+        font-family: '#{$name}';
+        src: font('#{$src}.eot');
+        src: font('#{$src}.eot?') format('embedded-opentype'),
+             font('#{$src}.woff2') format('woff2'),
+             font('#{$src}.woff') format('woff'),
+             font('#{$src}.ttf') format('truetype'),
+             font('#{$src}.svg') format('svg');
+        font-weight: $weight;
+        font-style: $style;
+    }
+}

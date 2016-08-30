@@ -1,0 +1,101 @@
+form {
+    @include clearfix();
+
+    label {
+        display: inline-block;
+        padding: 0.3em 0;
+        width: 100%;
+    }
+
+    input,
+    select,
+    textarea {
+        background-color: $input-bgcolor;
+        border: 1px solid $input-bordercolor;
+        color: $input-color;
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 100%;
+    	outline: 0;
+        outline-width: 0;
+        padding: 0.4em 0.6em;
+        width: 100%;
+
+        &:focus {
+            background-color: $input-focus-bgcolor;
+            border-color: $input-focus-bgcolor;
+            color: $input-focus-color;
+            outline: none;
+        }
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+        width: auto;
+    }
+
+    textarea {
+        resize: none;
+    }
+
+    .file {
+        @include clearfix();
+
+        input[type="file"] {
+            display: none;
+        }
+
+        button{
+            float: left;
+            font-size: 18px;
+            line-height: 1.2;
+            padding-top: 0.3em;
+            padding-bottom: 0.3em;
+        }
+
+        span {
+            float: left;
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 1.2;
+            padding: 0.48em;
+        }
+    }
+
+    h1, h2, h3, h4, h5, h6, p {
+        margin: 0;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    p.caption {
+        padding: 0 1em;
+    }
+
+    .group {
+        @include clearfix();
+        margin-bottom: 1.12em;
+    }
+
+    @include placeholder-color($input-placeholder-color);
+}
+
+select {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+.search-bar {
+    .form-title {
+        cursor: pointer;
+    }
+}
+
+.form-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 1em 0;
+}

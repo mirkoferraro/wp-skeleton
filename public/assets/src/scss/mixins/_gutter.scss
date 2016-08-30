@@ -1,0 +1,10 @@
+@mixin gutter($horizontal: 'medium', $vertical: false) {
+    @if $horizontal {
+        padding-left: map-get($gutters, $horizontal);
+        padding-right: map-get($gutters, $horizontal);
+    }
+    @if $vertical {
+        padding-top: map-get($gutters, $vertical);
+        padding-bottom: map-get($gutters, $vertical);
+    }
+}

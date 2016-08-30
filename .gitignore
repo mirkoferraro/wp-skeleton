@@ -1,0 +1,38 @@
+# Application
+assets_versions.php
+config.php
+!public/app/plugins/.gitignore
+public/app/upgrade
+public/assets/css/*
+!public/assets/css/lib
+public/assets/favicons
+public/assets/img
+public/assets/js/*
+!public/assets/js/lib
+public/up/*
+!public/up/.htaccess
+wp-keys.php
+
+# WordPress
+public/core
+
+# WP-CLI
+db-sync
+sql-dump-*.sql
+
+# Vendor (Composer)
+vendor
+composer.lock
+
+# Logs
+log
+
+# NPM
+node_modules
+npm-debug.log
+
+Vagrant
+.vagrant/*
+
+# Mac
+.DS_Store
