@@ -40,21 +40,20 @@ define( 'WPLANG', 'it_IT' );
 define( 'WP_LANG_DIR', $webroot_dir . '/app/languages' );
 define( 'WP_DEFAULT_THEME', 'skeleton' );
 
-define( 'WP_POST_REVISIONS', 3 );
-define( 'WP_AUTO_UPDATE_CORE', false );
-define( 'AUTOMATIC_UPDATER_DISABLED', true );
-define( 'DISALLOW_FILE_EDIT', true );
-define( 'FS_METHOD', 'direct' );
+define( 'WP_POST_REVISIONS', 3 ); // Number of max revisions, false to disable
+define( 'WP_AUTO_UPDATE_CORE', false ); // Disable wp core updates notifications
+define( 'AUTOMATIC_UPDATER_DISABLED', true ); // Disable all wp auto-updates
+define( 'DISALLOW_FILE_EDIT', true ); // Disable plugins and theme editor
+define( 'FS_METHOD', 'direct' ); // Force the filesystem method to use Direct File I/O
 define( 'WP_USE_EXT_MYSQL', false ); // Don't use deprecated mysql module
 define( 'WP_HTTP_BLOCK_EXTERNAL', true ); // Block external http requests
 define( 'WP_ACCESSIBLE_HOSTS', 'api.wordpress.org,*.github.com' ); //Except this
-define( 'FS_CHMOD_FILE', 0755 );
-define( 'FS_CHMOD_DIR', 0644 );
-define( 'WP_ALLOW_REPAIR', true );
-define( 'IMAGE_EDIT_OVERWRITE', true );
-define( 'DISABLE_WP_CRON', true );
-define( 'WP_CRON_LOCK_TIMEOUT', 900 );
-define( 'AUTOSAVE_INTERVAL', -1 );
+define( 'FS_CHMOD_FILE', 0755 ); // Override file permissions
+define( 'FS_CHMOD_DIR', 0644 ); // Override folder permissions
+define( 'IMAGE_EDIT_OVERWRITE', true ); // Delete old versions of images
+define( 'DISABLE_WP_CRON', true ); // Disable the cron system
+define( 'WP_CRON_LOCK_TIMEOUT', 900 ); // Define the interval between the crons
+define( 'AUTOSAVE_INTERVAL', -1 ); // Define the interval between auto-saves in wp-admin (-1: disabled)
 
 define( 'WP_PORT', ($server_port == 80 || $server_port == 443) ? '' : ':' . $server_port );
 define( 'WP_PROTOCOL', ($server_port == 443) ? 'https://' : 'http://' );
@@ -67,19 +66,18 @@ define( 'WP_CONTENT_DIR', $webroot_dir . CONTENT_DIR );
 define( 'WP_CONTENT_URL', WP_DOMAIN . CONTENT_DIR );
 define( 'UPLOADS', '../up' ); // Relative to WP_SITEURL
 
-define( 'CUSTOM_TAGS', false );
+define( 'WP_ALLOW_REPAIR', false ); // In order to repair a corrupted database put this to true and visit /wp-admin/maint/repair.php
 
 switch ( WP_ENV ) {
     case 'development':
-        define( 'SAVEQUERIES', true );
-        define( 'WP_DEBUG', true );
-        define( 'SCRIPT_DEBUG', true );
+        define( 'SAVEQUERIES', true ); // Saves the database queries into $wpdb->queries for analysis
+        define( 'WP_DEBUG', true ); // Allow error reporting
         break;
     case 'production':
-        ini_set('display_errors', 0);
-        define( 'WP_DEBUG_DISPLAY', false );
-        define( 'SCRIPT_DEBUG', false );
-        define( 'DISALLOW_FILE_MODS', true );
+        ini_set('display_errors', 0); // Suppress error reporting
+        define( 'WP_DEBUG_DISPLAY', false ); // Suppress error reporting
+        define( 'SCRIPT_DEBUG', false ); // Be sure to load minified version of css and js files
+        define( 'DISALLOW_FILE_MODS', true ); // Disable plugin and theme updates and installation
 }
 
 $table_prefix = DB_PREFIX;
