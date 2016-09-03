@@ -59,7 +59,7 @@ mkdir -p /var/www/log
 
 ## Import base MySQL DB
 mysql --user=root --password=root -e "CREATE DATABASE skeleton; USE skeleton;"
-mysql --user=root --password=root -h localhost < /var/www/db/dump.sql
+mysql --user=root --password=root -h localhost skeleton < /var/www/db/dump.sql
 
 ## Install Composer
 curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
