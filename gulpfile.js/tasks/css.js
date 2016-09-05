@@ -19,6 +19,6 @@ module.exports = function (gulp, plugins, config, paths) {
                 path.basename += ".min";
             }))
             .pipe(gulp.dest(paths.css.dest))
-            .pipe(plugins.browserSync.stream({match: '**/*.css'}));
+            .pipe(plugins.browserSync.stream());
     };
 };

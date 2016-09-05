@@ -6,7 +6,7 @@ src    = assets + '/src';
 module.exports = {
     assets: assets,
     src:    src,
-    sql:    root + '/sql',
+    theme:  root + '/public/app/themes/skeleton',
     css: {
         src:  src + '/scss',
         dest: assets + '/css',

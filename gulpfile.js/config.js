@@ -60,11 +60,11 @@ module.exports = function( plugins, paths ) {
         watch: {
             css: {
                 files: paths.css.src + '/**/*.scss',
-                tasks: ['css', 'browserSyncReload']
+                tasks: ['css', 'browserSyncStream']
             },
             js: {
                 files: paths.js.src + '/**/*.js',
-                tasks: ['js', 'browserSyncReload']
+                tasks: ['js', 'browserSyncStream']
             },
             img: {
                 files: paths.img.src + '/*',

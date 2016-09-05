@@ -28,9 +28,6 @@ a {
     text-decoration: none;
     @include on-event {
         outline: 0 none;
-        text-decoration: underline;
-    }
-    @include on-event(true) {
-        color: inherit;
+        text-decoration: none;
     }
 }

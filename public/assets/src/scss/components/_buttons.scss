@@ -9,6 +9,7 @@
     padding: 0 1em;
     transition: background 0.25s, color 0.25s;
     text-decoration: none;
+    text-transform: uppercase;
     @include on-event {
       outline: 0 none;
       text-decoration: none;
@@ -20,14 +21,14 @@
 
     &:hover,
     &:active {
-        border-color: $btn-hover-bgcolor;
-        background-color: $btn-hover-bordercolor;
+        border-color: $btn-hover-bordercolor;
+        background-color: $btn-hover-bgcolor;
         color: $btn-hover-color;
     }
 
     &.btn--reversed {
-        border-color: $btn-hover-bgcolor;
-        background-color: $btn-hover-bordercolor;
+        border-color: $btn-hover-bordercolor;
+        background-color: $btn-hover-bgcolor;
         color: $btn-hover-color;
 
         &:hover,

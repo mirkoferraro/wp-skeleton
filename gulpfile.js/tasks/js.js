@@ -8,6 +8,7 @@ module.exports = function (gulp, plugins, config, paths) {
                 path.basename += ".min";
             }))
             .pipe(plugins.sourcemaps.write('.'))
-            .pipe(gulp.dest(paths.js.dest));
+            .pipe(gulp.dest(paths.js.dest))
+            .pipe(plugins.browserSync.stream());
     }
 };
