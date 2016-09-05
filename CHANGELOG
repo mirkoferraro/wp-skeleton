@@ -1,3 +1,8 @@
+# 1.0.3
+	BrowserSync now runs on the vagrant host
+	Added .editorconfig files (http://editorconfig.org)
+	Refactored themes functions (to mu-plugins)
+
 # 1.0.2
 	Fix BrowserSync reload on php files changes
 	Fix assets versions loading in development mode
@@ -7,6 +12,6 @@
 	Simplified view system (removed custom fields part)
 	Fix database setup in Vagrant
 	Deleted misprint file
-	
+
 # 1.0.0
 	First commit

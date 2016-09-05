@@ -6,15 +6,15 @@
 	<head>
 		<?php view( 'head' ); ?>
 	</head>
-	
+
 	<body <?php body_class(); ?>>
 
 		<div class="body-wrapper">
-			
+
 			<?php view( 'header' ); ?>
-			
+
 			<div class="main-wrapper <?= display_sidebar() ? 'with-sidebar' : '' ?>">
-				
+
 				<main class="main" role="main">
 					<?php view( 'content' ); ?>
 				</main>
@@ -24,15 +24,15 @@
 					<?php view( 'sidebar' ); ?>
 				</aside>
 				<?php endif; ?>
-				
+
 			</div>
 
 			<?php view( 'footer' ); ?>
 
 		</div>
-		
+
 		<?php wp_footer(); ?>
-		
+
 	</body>
 </html>
 

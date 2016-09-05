@@ -2,28 +2,10 @@
 
 check_directly_access();
 
-
-function check_directly_access() {
-    if ( ! defined( 'ABSPATH' ) ) {
-        exit;
-    }
-}
-
-function glob_recursive($pattern, $flags = 0) {
-    $files = glob($pattern, $flags);
-    foreach (glob(dirname($pattern).'/*', GLOB_ONLYDIR|GLOB_NOSORT) as $dir) {
-        $files = array_merge($files, glob_recursive($dir.'/'.basename($pattern), $flags));
-    }
-    return $files;
-}
-
-
 /*------------------------------------*\
     Function modules
 \*------------------------------------*/
 $includes_path = get_template_directory() . '/includes';
-
-include_once( $includes_path . '/functions/views.php' );
 
 foreach ( glob( $includes_path . '/functions/*.php' ) as $function ) {
     include_once( $function );

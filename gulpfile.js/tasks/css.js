@@ -1,11 +1,11 @@
-module.exports = function (gulp, plugins, config, paths) {
-    return function () {
+module.exports = function(gulp, plugins, config, paths) {
+    return function() {
         return gulp.src([paths.css.src + '/*.scss'])
             .pipe(plugins.sourcemaps.init())
             .pipe(plugins.sass({
-                outputStyle: 'nested'
-            })
-            .on('error', plugins.sass.logError))
+                    outputStyle: 'nested'
+                })
+                .on('error', plugins.sass.logError))
             .pipe(plugins.autoprefixer({
                 browsers: ['last 2 versions'],
                 cascade: false

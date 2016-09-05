@@ -29,7 +29,7 @@ module.exports = function( plugins, paths ) {
                 backgroundColor: '#ffffff',
                 themeColor: '#ffffff',
                 manifest: {
-                    name: 'mywebsitename',
+                  	name: 'mywebsitename',
                     display: 'browser',
                     orientation: 'notSet',
                     onConflict: 'override',
@@ -43,7 +43,10 @@ module.exports = function( plugins, paths ) {
         },
         browserSync: {
             proxy: 'skeleton.vagrant.test',
-            open: false
+            open: false,
+            socket: {
+                domain: 'localhost:3000'
+            }
         },
         tasks: [
             'browserSync',

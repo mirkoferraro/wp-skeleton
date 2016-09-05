@@ -23,7 +23,7 @@ function assets_path( $type = null ) {
 
 add_action( 'wp_footer', 'print_svg_sprite', 0 );
 function print_svg_sprite() {
-    include WP_DIR . '/assets/img/svg-sprite.svg';
+	include WP_DIR . '/assets/img/svg-sprite.svg';
 }
 
 add_action( 'wp_footer', 'load_async_css', 1000 );
@@ -52,4 +52,17 @@ function font_loader() {
     });
     </script>
     <?php
+}
+
+if ( WP_ENV == 'development' ) {
+    add_action( 'wp_footer', 'browser_sync_snippet', 1000 );
+}
+function browser_sync_snippet() {
+    ?>
+    <script id="__bs_script__">//<![CDATA[
+        document.write("<script async src='http://localhost:3000/browser-sync/browser-sync-client.2.14.0.js'><\/script>");
+    //]]></script>
+    <?php
+
+
 }

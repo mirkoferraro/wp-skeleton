@@ -7,7 +7,7 @@ function add_woocommerce_support() {
 }
 
 add_filter( 'woocommerce_ajax_variation_threshold', 'custom_woocommerce_ajax_variation_threshold', 10, 2 );
-function custom_woocommerce_ajax_variation_threshold($count, $product) {
+function custom_woocommerce_ajax_variation_threshold( $count, $product ) {
     return 9999;
 }
 
