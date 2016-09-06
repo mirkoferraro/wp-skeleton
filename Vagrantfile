@@ -1,7 +1,11 @@
 HOSTNAME = "skeleton.vagrant.test"
 
+unless Vagrant.has_plugin?("landrush")
+  raise 'Landrush is required: vagrant plugin install landrush'
+end
+
 Vagrant.configure("2") do |config|
-	config.vm.box = "precise64"
+	config.vm.box = "hashicorp/precise64"
 	config.vm.box_url = "http://files.vagrantup.com/precise64.box"
 
 	config.landrush.enabled = true

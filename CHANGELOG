@@ -1,5 +1,10 @@
+# 1.0.5
+	Added Google Analitycs support
+	Added PDF integration guide
+	Updated Vagrantfile
+
 # 1.0.4
-	Added Twitter integration
+	Added Twitter integration guide
 
 # 1.0.3
 	BrowserSync now runs on the vagrant host
