@@ -22,6 +22,7 @@ aptget upgrade
 ## Install Apache 2, PHP 7, MySQL 5.6 and other useful stuffs
 aptget install -y vim
 aptget install -y curl
+aptget install -y sendmail
 aptget install git
 aptget install -y apache2
 aptget install -y php7.0
