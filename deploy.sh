@@ -45,5 +45,8 @@ else
 	composer update
 fi
 
+## Migrations
+php migration.php
+
 ## Build assets
 gulp build
