@@ -12,5 +12,5 @@ if ( function_exists( 'add_image_size' ) ) {
 }
 
 if ( function_exists( 'load_theme_textdomain' ) ) {
-    load_theme_textdomain( 'skeleton', get_template_directory() . '/languages' );
+    load_theme_textdomain( get_stylesheet(), get_template_directory() . '/languages' );
 }
