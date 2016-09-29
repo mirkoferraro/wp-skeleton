@@ -11,7 +11,7 @@ $server_port = isset ( $_SERVER['SERVER_PORT'] ) ? $_SERVER['SERVER_PORT'] : '';
 $is_vagrant = strpos( php_uname(), 'vagrant' ) !== false;
 
 // Project config
-$config_path = $is_vagrant ? '/vagrant-config.php' : '/config.php';
+$config_path = $is_vagrant ? '/vagrant-config.php' : '/local-config.php';
 
 // Check for required files
 if ( ! file_exists( $root_dir . '/vendor/autoload.php' ) ) {
