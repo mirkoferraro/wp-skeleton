@@ -9,5 +9,5 @@ function display_sidebar() {
 }
 
 if ( ! isset( $content_width ) ) {
-    $content_width = display_sidebar() ? 600 : 900;
+    $content_width = display_sidebar() ? 900 : 1200;
 }

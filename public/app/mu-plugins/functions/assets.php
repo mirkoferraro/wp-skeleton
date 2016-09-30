@@ -2,28 +2,30 @@
 check_directly_access();
 
 function assets_url( $type = null ) {
-    $url = home_url() . "/assets";
+    $url = home_url() . '/assets';
 
-    if ($type != null && in_array($type, array('css', 'favicons', 'fonts', 'img', 'js'))) {
-        $url .= "/" . $type;
+    if ( $type != null && in_array( $type, array( 'css', 'favicons', 'fonts', 'img', 'js' ) ) ) {
+        $url .= '/' . $type;
     }
 
     return $url;
 }
 
 function assets_path( $type = null ) {
-    $url = WP_DIR . "/assets";
+    $url = WP_DIR . '/assets';
 
     if ($type != null && in_array($type, array('css', 'favicons', 'fonts', 'img', 'js'))) {
-        $url .= "/" . $type;
+        $url .= '/' . $type;
     }
 
     return $url;
 }
 
-add_action( 'wp_head', 'print_google_analytics_code', 0, 1000 );
+if ( defined( 'GOOGLE_ANALYTICS_ID' ) && ! empty( GOOGLE_ANALYTICS_ID ) ) {
+	add_action( 'wp_head', 'print_google_analytics_code', 0, 1000 );
+}
 function print_google_analytics_code() {
-	if ( defined( 'GOOGLE_ANALYTICS_ID' ) && ! empty( GOOGLE_ANALYTICS_ID ) ) : ?>
+	?>
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -34,7 +36,7 @@ function print_google_analytics_code() {
 	  ga('send', 'pageview');
 
 	</script>
-	<?php endif;
+	<?php
 }
 
 add_action( 'wp_footer', 'print_svg_sprite', 0 );
@@ -79,6 +81,4 @@ function browser_sync_snippet() {
         document.write("<script async src='http://localhost:3000/browser-sync/browser-sync-client.2.14.0.js'><\/script>");
     //]]></script>
     <?php
-
-
 }

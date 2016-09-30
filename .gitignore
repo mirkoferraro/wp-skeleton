@@ -1,7 +1,6 @@
 # Application
 assets_versions.php
 config.php
-!public/app/plugins/.gitignore
 public/app/upgrade
 public/assets/css/*
 !public/assets/css/lib
