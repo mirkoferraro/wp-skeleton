@@ -38,5 +38,9 @@
     "normalize-scss": "^5.0.3",
     "super-gigi": "^1.12.6",
     "susy": "^2.2.12"
+  },
+  "devDependencies": {
+    "gulp-plumber": "^1.1.0",
+    "gulp-util": "^3.0.7"
   }
 }
