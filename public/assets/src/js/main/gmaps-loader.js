@@ -1,3 +1,5 @@
+//=require ../lib/semaphore.js
+
 (function($, root) {
 
 	var
