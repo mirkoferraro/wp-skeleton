@@ -1,6 +1,9 @@
-module.exports = function (gulp, plugins, config, paths) {
+module.exports = function (gulp, plugins, config, events, paths) {
     return function() {
         return gulp.src(paths.js.src + '/*.js')
+		    .pipe(plugins.plumber({
+		        errorHandler: events.onError
+		    }))
             .pipe(plugins.sourcemaps.init())
             .pipe(plugins.include())
             .pipe(plugins.uglify())

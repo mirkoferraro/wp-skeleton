@@ -1,6 +1,9 @@
-module.exports = function (gulp, plugins, config, paths) {
+module.exports = function (gulp, plugins, config, events, paths) {
     return function () {
         return gulp.src(paths.img.src + '/*')
+		    .pipe(plugins.plumber({
+		        errorHandler: events.onError
+		    }))
             .pipe(plugins.imagemin({
                 optimizationLevel: 3,
                 progressive: true,

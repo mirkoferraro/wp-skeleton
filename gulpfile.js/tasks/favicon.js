@@ -1,4 +1,4 @@
-module.exports = function (gulp, plugins, config, paths) {
+module.exports = function (gulp, plugins, config, events, paths) {
     return function (done) {
         plugins.realFavicon.generateFavicon({
     		masterPicture: paths.favicon.src + '/favicon.png',

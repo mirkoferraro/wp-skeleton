@@ -1,4 +1,4 @@
-module.exports = function (gulp, plugins, config, paths) {
+module.exports = function (gulp, plugins, config, events, paths) {
     return function () {
         var s = [
             '==== WpSkeleton Helper ====',
