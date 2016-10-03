@@ -1,22 +1,18 @@
-# 1.0.5
+# 1.0.1
+	Mustache.js
+	Throttle, debounce and wrapper functions (js)
+	Google Maps loader
+	Version migration system
+	Deploy script
 	Added Google Analitycs support
 	Added PDF integration guide
 	Updated Vagrantfile
-
-# 1.0.4
-	Added Twitter integration guide
-
-# 1.0.3
 	BrowserSync now runs on the vagrant host
 	Added .editorconfig files (http://editorconfig.org)
 	Refactored themes functions (to mu-plugins)
-
-# 1.0.2
 	Fix BrowserSync reload on php files changes
 	Fix assets versions loading in development mode
 	Fix button colors
-
-# 1.0.1
 	Simplified view system (removed custom fields part)
 	Fix database setup in Vagrant
 	Deleted misprint file
