@@ -21,12 +21,44 @@ This project is the result of more than one year of high-level work with WordPre
 
 ## Installation
 
-Use ```sh install.sh``` command to install:
+Use ```sh deploy.sh``` command to install:
 
+* Composer (if not installed yet)
+* wp-cli (if not installed yet)
+* NodeJs (if not installed yet)
+* Gulp (if not installed yet)
 * WordPress
+* WP Secret Keys
 * NPM dependencies
 * Composer dependencies
-* WP Secret Keys
+* Execute migration scripts
+* Launch the build task of Gulp
+
+
+## WP Secret Keys
+The standard WP's secret keys are moved to wp-keys.php file.
+
+```php
+<?php
+define('AUTH_KEY', '');
+define('SECURE_AUTH_KEY', '');
+define('LOGGED_IN_KEY', '');
+define('NONCE_KEY', '');
+define('AUTH_SALT', '');
+define('SECURE_AUTH_SALT', '');
+define('LOGGED_IN_SALT', '');
+define('NONCE_SALT', '');
+```
+The deploy script create the wp-keys.php file for you by using the generated keys from [https://api.wordpress.org/secret-key/1.1/salt](https://api.wordpress.org/secret-key/1.1/salt/).
+
+
+## Migrations
+If you have to do some version migration on your WP site (generally on the database side), you can use the migrations system.
+
+Create a php file in the **migrations** folder, name it using a date-time pattern (yyyymmddhhmm.php) in order to keep the migration files ordered. In your script you can use all the WP functions you need.
+
+Launch the migration.php file from the terminal: ```php migration.php```
+
 
 ## Development with Vagrant
 
