@@ -4,7 +4,7 @@ $footer-height: 50px;
 	min-height: 100%;
 	position: relative;
 }
-	
+
 .main-wrapper {
 	padding-bottom: $footer-height;
 	&.with-sidebar {
@@ -27,6 +27,7 @@ $footer-height: 50px;
 	height: $footer-height;
 	left: 0;
 	position: absolute;
+	width: 100%;
 }
 
 .container {
