@@ -1,11 +1,12 @@
 <?php check_directly_access(); ?>
+<?php global $wp_query; ?>
 
 <section>
 
 	<h1><?= sprintf( _t( '%s Search Results for ' ), $wp_query->found_posts ) . get_search_query(); ?></h1>
 
-	<?php if (have_posts()): while (have_posts()) : the_post(); ?>
-	
+	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 			<?php if ( has_post_thumbnail() ) : ?>
@@ -33,7 +34,7 @@
 	</div>
 
 	<?php else: ?>
-		
+
 		<article>
 			<h2><?php _t( 'Sorry, nothing to display.' ); ?></h2>
 		</article>
