@@ -3,14 +3,17 @@ check_directly_access();
 
 add_action( 'init', 'register_menu_locations' );
 function register_menu_locations() {
+
     register_nav_menus(array(
         'header-menu'   => _t( 'Header Menu' ),
         'sidebar-menu'  => _t( 'Sidebar Menu' ),
         'footer-menu'   => _t( 'Footer Menu' ),
     ));
+
 }
 
 function nav_menu( $position ) {
+
 	return wp_nav_menu(array(
 		'theme_location'  => "{$position}-menu",
 		'menu'            => '',
@@ -29,4 +32,5 @@ function nav_menu( $position ) {
 		// 'depth'           => 0,
 		// 'walker'          => ''
 	));
+
 }

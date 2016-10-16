@@ -3,6 +3,7 @@
 check_directly_access();
 
 if (function_exists('register_sidebar')) {
+
     register_sidebar(array(
         'name'          => _t('Widget Area 1'),
         'description'   => _t('Description for this widget-area...'),
@@ -12,4 +13,5 @@ if (function_exists('register_sidebar')) {
         'before_title'  => '<h3>',
         'after_title'   => '</h3>'
     ));
+
 }

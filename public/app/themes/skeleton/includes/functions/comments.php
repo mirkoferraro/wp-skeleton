@@ -2,6 +2,7 @@
 check_directly_access();
 
 function comments_callback($comment, $args, $depth) {
+
 	$GLOBALS['comment'] = $comment;
 	extract($args, EXTR_SKIP);
 
@@ -42,29 +43,32 @@ function comments_callback($comment, $args, $depth) {
 	<?php if ( 'div' != $args['style'] ) : ?>
 	</div>
 	<?php endif; ?>
-<?php }
+<?php
+}
 
 
 // Remove inline Recent Comment Styles from wp_head()
 add_action('widgets_init', 'remove_recent_comments_style');
-function remove_recent_comments_style()
-{
+function remove_recent_comments_style() {
+
     global $wp_widget_factory;
     remove_action('wp_head', array(
         $wp_widget_factory->widgets['WP_Widget_Recent_Comments'],
         'recent_comments_style'
     ));
+
 }
 
 
 // Enable Threaded Comments
 add_action('get_header', 'enable_threaded_comments');
-function enable_threaded_comments()
-{
+function enable_threaded_comments() {
+
     wp_enqueue_script('comment-reply');
     if (!is_admin()) {
         if (is_singular() AND comments_open() AND (get_option('thread_comments') == 1)) {
             wp_enqueue_script('comment-reply');
         }
     }
+
 }
