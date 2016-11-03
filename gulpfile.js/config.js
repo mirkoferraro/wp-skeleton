@@ -48,9 +48,14 @@ module.exports = function( plugins, paths ) {
                 domain: 'localhost:3000'
             }
         },
+        critical: {
+        	base_url: 'http://172.28.128.3/',
+        	main_css: 'http://172.28.128.3//assets/css/main.min.css',
+        },
         tasks: [
             'browserSync',
             'js',
+            'critical',
             'css',
             'svg',
             'img',
@@ -67,7 +72,7 @@ module.exports = function( plugins, paths ) {
             },
             js: {
                 files: paths.js.src + '/**/*.js',
-                tasks: ['js', 'browserSyncStream']
+                tasks: ['js', 'critical', 'browserSyncStream']
             },
             img: {
                 files: paths.img.src + '/*',

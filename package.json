@@ -13,6 +13,7 @@
   "dependencies": {
     "breakpoint-sass": "^2.7.0",
     "browser-sync": "^2.10.1",
+    "criticalcss": "^2.1.0",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-clean": "^0.3.2",
@@ -21,6 +22,7 @@
     "gulp-imagemin": "^3.0.3",
     "gulp-include": "^2.3.0",
     "gulp-load-plugins": "^1.2.0",
+    "gulp-plumber": "^1.1.0",
     "gulp-real-favicon": "^0.2.1",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.1.1",
@@ -38,9 +40,5 @@
     "normalize-scss": "^5.0.3",
     "super-gigi": "^1.12.6",
     "susy": "^2.2.12"
-  },
-  "devDependencies": {
-    "gulp-plumber": "^1.1.0",
-    "gulp-util": "^3.0.7"
   }
 }

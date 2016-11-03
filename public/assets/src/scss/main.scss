@@ -21,9 +21,15 @@
 'mixins/placeholder',
 
 // Base stuff
+'base/base',
+'base/typography',
+'base/wpcore',
+'base/layout',
 'base/print',
 
 // Layout-related sections
+'layout/header',
+'layout/menu',
 'layout/footer',
 
 // Utils

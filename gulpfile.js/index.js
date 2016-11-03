@@ -10,7 +10,7 @@ for (var i in config.tasks) {
     gulp.task(taskname, require('./tasks/' + taskname)(gulp, plugins, config, events, paths));
 }
 
-gulp.task('default', ['browserSync', 'img', 'svg', 'css', 'js', 'watch'], function() {
+gulp.task('default', ['browserSync', 'img', 'svg', 'css', 'js', 'critical', 'watch'], function() {
     console.log("     __          __    _____ _        _      _                  ");
     console.log("     \\ \\        / /   / ____| |      | |    | |                 ");
     console.log("      \\ \\  /\\  / / __| (___ | | _____| | ___| |_ ___  _ __      ");
