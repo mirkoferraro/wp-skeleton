@@ -23,6 +23,18 @@ if ! command -v gulp >/dev/null; then
 	sudo npm install --global gulp-cli
 fi
 
+## WP Keys
+if [ ! -d "wp-keys.php" ]; then
+	echo '<?php' $(wget https://api.wordpress.org/secret-key/1.1/salt/ -q -O -) > wp-keys.php
+fi
+
+## Composer dependencies
+if [ -d "vendor" ]; then
+	composer install
+else
+	composer update
+fi
+
 ## WP Core
 if [ -d "public/core" ]; then
 	wp core update
@@ -30,19 +42,11 @@ else
 	wp core download
 fi
 
-## WP Keys
-if [ ! -d "wp-keys.php" ]; then
-	echo '<?php' $(wget https://api.wordpress.org/secret-key/1.1/salt/ -q -O -) > wp-keys.php
-fi
-
 ## Install NPM dependecies
-npm install
-
-## Composer dependencies
-if [ -d "vendor" ]; then
-	composer install
+if [ -d "node_modules" ]; then
+	npm update
 else
-	composer update
+	npm install
 fi
 
 ## Migrations
