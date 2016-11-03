@@ -72,13 +72,26 @@ function font_loader() {
     <?php
 }
 
-if ( WP_ENV == 'development' ) {
-    add_action( 'wp_footer', 'browser_sync_snippet', 1000 );
-}
+add_action( 'wp_footer', 'browser_sync_snippet', 1000 );
 function browser_sync_snippet() {
+	if ( WP_ENV != 'development' ) {
+		return;
+	}
+
+	$browser_sync_json_path = WP_DIR . '/../node_modules/browser-sync/package.json';
+	if ( ! file_exists( $browser_sync_json_path ) ) {
+		return;
+	}
+
+	$browser_sync_json = json_decode( file_get_contents( $browser_sync_json_path ) );
+
+	if ( ! isset( $browser_sync_json->version ) ) {
+		return;
+	}
+
     ?>
     <script id="__bs_script__">//<![CDATA[
-        document.write("<script async src='http://localhost:3000/browser-sync/browser-sync-client.2.14.0.js'><\/script>");
+        document.write("<script async src='http://localhost:3000/browser-sync/browser-sync-client.js?v=<?= $browser_sync_json->version; ?>'><\/script>");
     //]]></script>
     <?php
 }
