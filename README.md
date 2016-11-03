@@ -75,3 +75,55 @@ You can found the Apache and PHP log files into the *log* folder into your proje
 Use ```gulp``` (default task) on your development machine in order to compile all the main tasks (svg, img, js, css and watch).
 
 Use ```gulp build``` on your production server (svg, img, favicon, js, css and version).
+
+
+## Administrator User
+Administrator user have the following credentials:
+```
+username: skeleton
+password: skeleton
+```
+
+You can delete the previous administrator and create a new one:
+```
+wp user delete 1
+wp user create yourusername your@email.com --role=administrator
+```
+
+Update the admin email as well:
+```
+wp option update admin_email your@email.com
+```
+
+
+## Javascript integrations
+
+### Event Wrappers
+Javascript files are located in *public/assets/src/js/*. Including the event-wrapper.js into main.js allow you to use the ScrollWrapper and ResizeWrapper.
+
+The ScrollWrapper is an instance of Throttler class, that run callbacks at most one time every 300 ms (this time value can be edited). The ResizeWrapper is an instance of Debouncer class, that runs callbacks only after 300 ms from the last event ping.
+
+ScrollWrapper is binded to scroll event: the callbacks added to ScrollWrapper will be called every 300 ms during the scroll event.
+
+ResizeWrapper is binded to resize event: the callbacks added to ResizeWrapper will be called after 300 ms from the last resize event.
+
+In order to add a function to ScrollWrapper and ResizeWrapper use the *put* function:
+```js
+ScrollWrapper.put( 'animation_on_scroll', function() { ... } );
+ResizeWrapper.put( 'animation_on_resize', function() { ... } );
+```
+
+To remove a function from the wrappers use the *remove* function:
+```js
+ScrollWrapper.remove( 'animation_on_scroll' );
+ResizeWrapper.remove( 'animation_on_resize' );
+```
+
+### Google Maps Loader
+You can use the *gmaps-loader.js* in order to manage several callbacks on the gmaps' *initMap* callback.
+Instead of *initMap* use the *onMapLoaded* function to add your callbacks.
+```js
+onMapLoaded( function() { ... } );
+```
+
+All your callbacks will be called after the firing of the *initMap* function.

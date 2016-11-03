@@ -1,0 +1,161 @@
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server ipv6only=on;
+
+    root /var/www/public;
+    index index.php index.html index.htm;
+
+    server_name skeleton.vagrant.test;
+
+	access_log /var/www/log/access.log;
+	error_log /var/www/log/error.log;
+
+    location / {
+        try_files $uri $uri/ =404;
+        autoindex on;
+    }
+
+    error_page 404 /404.html;
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root /var/www/public;
+    }
+
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass 127.0.0.1:9000;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+}
+
+
+
+
+
+
+
+
+server {
+       listen         80;
+       server_name    skashoes.com;
+       return         301 https://$server_name$request_uri;
+}
+server {
+    listen 			443 ssl;
+    server_name     skashoes.com;
+    root            /var/www/html/skashoes.com/src;
+
+    ssl_certificate /etc/nginx/ssl/fixed_3a31ccdc7f96c874.crt;
+    ssl_certificate_key /etc/nginx/ssl/skashoes.key;
+
+    index index.html index.htm index.php;
+
+    access_log  /var/log/nginx/skashoes.com.access.log;
+    access_log  /var/log/nginx/skashoes.com.apachestyle.access.log  apachestandard;
+    error_log  /var/log/nginx/skashoes.com.error.log;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /robots.txt { access_log off; log_not_found off; }
+    location = /apple-touch-icon.png { access_log off; log_not_found off; }
+    location = /apple-touch-icon-precomposed.png { access_log off; log_not_found off; }
+    location ~ /\. { deny  all; access_log off; log_not_found off; }
+
+    location / {
+        try_files $uri $uri/ /index.php?q=$uri&$args;
+    }
+    location ~ \.php$ {
+        proxy_intercept_errors on;
+        error_page 500 501 502 503 = @fallback;
+        fastcgi_buffers 8 256k;
+        fastcgi_buffer_size 128k;
+        fastcgi_intercept_errors on;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_pass hhvm;
+    }
+    location @fallback {
+        fastcgi_buffers 8 256k;
+        fastcgi_buffer_size 128k;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_pass php;
+    }
+    location ~* \.(ico|gif|jpe?g|png|svg|eot|otf|woff|woff2|ttf|ogg)$ {
+    	expires max;
+    }
+    #Yoast sitemap
+location ~ ([^/]*)sitemap(.*)\.x(m|s)l$ {
+        ## this redirects sitemap.xml to /sitemap_index.xml
+	rewrite ^/sitemap\.xml$ /sitemap_index.xml permanent;
+        ## this makes the XML sitemaps work
+        rewrite ^/([a-z]+)?-?sitemap\.xsl$ /index.php?xsl=$1 last;
+	rewrite ^/sitemap_index\.xml$ /index.php?sitemap=1 last;
+	rewrite ^/([^/]+?)-sitemap([0-9]+)?\.xml$ /index.php?sitemap=$1&sitemap_n=$2 last;
+        ## The following lines are optional for the premium extensions
+	## News SEO
+        rewrite ^/news-sitemap\.xml$ /index.php?sitemap=wpseo_news last;
+	## Local SEO
+	rewrite ^/locations\.kml$ /index.php?sitemap=wpseo_local_kml last;
+	rewrite ^/geo-sitemap\.xml$ /index.php?sitemap=wpseo_local last;
+	## Video SEO
+	rewrite ^/video-sitemap\.xsl$ /index.php?xsl=video last;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	root /var/www/html;
+
+    index index.php index.html index.htm;
+
+	server_name bocchi.it;
+
+    location / {
+        try_files $uri $uri/ /index.php?q=$uri&$args;
+    }
+
+    location ~ \.php$ {
+        proxy_intercept_errors on;
+        error_page 500 501 502 503 = @fallback;
+        fastcgi_buffers 8 256k;
+        fastcgi_buffer_size 128k;
+        fastcgi_intercept_errors on;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+		fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+    }
+
+    location @fallback {
+        fastcgi_buffers 8 256k;
+        fastcgi_buffer_size 128k;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+}
