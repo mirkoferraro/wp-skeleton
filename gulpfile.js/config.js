@@ -1,5 +1,8 @@
+var localhost ='http://skeleton.vagrant.test';
+
 module.exports = function( plugins, paths ) {
     return {
+    	localhost: localhost,
         version: {
             clean: [
                 paths.css.dest + '/*.min.*.css',
@@ -42,15 +45,15 @@ module.exports = function( plugins, paths ) {
             }
         },
         browserSync: {
-            proxy: 'skeleton.vagrant.test',
+            proxy: localhost,
             open: false,
             socket: {
                 domain: 'localhost:3000'
             }
         },
         critical: {
-        	base_url: 'http://172.28.128.3/',
-        	main_css: 'http://172.28.128.3//assets/css/main.min.css',
+        	base_url: localhost,
+        	main_css: localhost + paths.css.dest.substr(8) + '/main.min.css',
         },
         tasks: [
             'browserSync',
@@ -68,11 +71,11 @@ module.exports = function( plugins, paths ) {
         watch: {
             css: {
                 files: paths.css.src + '/**/*.scss',
-                tasks: ['css', 'browserSyncStream']
+                tasks: ['css', 'critical', 'browserSyncStream']
             },
             js: {
                 files: paths.js.src + '/**/*.js',
-                tasks: ['js', 'critical', 'browserSyncStream']
+                tasks: ['js', 'browserSyncStream']
             },
             img: {
                 files: paths.img.src + '/*',
