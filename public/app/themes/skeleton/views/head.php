@@ -29,6 +29,5 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="<?php bloginfo('description'); ?>">
 
-<style><?php include $css_path . '/critical.min.css'; ?></style>
-
+<?php print_critical_style(); ?>
 <?php wp_head(); ?>

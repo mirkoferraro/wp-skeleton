@@ -82,3 +82,14 @@ function browser_sync_snippet() {
     //]]></script>
     <?php
 }
+
+function critical_css_path() {
+	return assets_path( 'css' ) . '/critical.css';
+}
+
+function print_critical_style() {
+	$critical_path = critical_css_path();
+	if ( file_exists( $critical_path ) ) : ?>
+	<style><?php include $critical_path; ?></style>
+	<?php endif;
+}
