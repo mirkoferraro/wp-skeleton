@@ -19,7 +19,7 @@ if ( ! file_exists( $root_dir . '/vendor/autoload.php' ) ) {
 }
 
 if ( ! file_exists( $root_dir . $config_path ) ) {
-    die( 'Missing project config.' );
+    die( 'Missing project config: create the <i>local-config.php</i> file' );
 }
 
 if ( ! file_exists( $root_dir . '/wp-keys.php' ) ) {
