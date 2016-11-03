@@ -35,13 +35,19 @@ function debounce(fn, delay) {
 	}
 }
 
-var Throttler = function(threshhold, args) {
+function Throttler(threshhold, args) {
 	var
-	fnlist = [];
+	fnlist = {};
 
-	var add = function(fn) {
+	var put = function(name, fn) {
 		if (typeof fn === 'function') {
-			fnlist.push(fn);
+			fnlist[name] = fn;
+		}
+	};
+
+	var remove = function(name) {
+		if (typeof fnlist[name] !== 'undefined') {
+			delete fnlist[name];
 		}
 	};
 
@@ -53,18 +59,25 @@ var Throttler = function(threshhold, args) {
 	}, threshhold);
 
 	return {
-		add: add,
+		put: put,
+		remove: remove,
 		run: run,
 	};
 };
 
-var Debouncer = function(delay, args) {
+function Debouncer(delay, args) {
 	var
-	fnlist = [];
+	fnlist = {};
 
-	var add = function(fn) {
+	var put = function(name, fn) {
 		if (typeof fn === 'function') {
-			fnlist.push(fn);
+			fnlist[name] = fn;
+		}
+	};
+
+	var remove = function(name) {
+		if (typeof fnlist[name] !== 'undefined') {
+			delete fnlist[name];
 		}
 	};
 
@@ -76,7 +89,8 @@ var Debouncer = function(delay, args) {
 	}, delay);
 
 	return {
-		add: add,
+		put: put,
+		remove: remove,
 		run: run,
 	};
 };

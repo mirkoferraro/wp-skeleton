@@ -1,8 +1,8 @@
 //=require ../lib/facebook-sdk.js
 
 var
-appId     = '1711609099057129',
-appSecret = '68b88b9d3a72711ab5f7faba3c59f893',
+appId     = '',
+appSecret = '',
 token;
 
 window.fbAsyncInit = function() {

@@ -1,6 +1,6 @@
 //=require ../lib/semaphore.js
 
-(function($, root) {
+(function(root) {
 
 	var
 	map_loaded = false,
@@ -15,4 +15,4 @@
 		queue.put( callback, map_loaded );
 	};
 
-})(jQuery, this);
+})(this);
