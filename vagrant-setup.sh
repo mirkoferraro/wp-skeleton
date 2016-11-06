@@ -3,64 +3,73 @@ function aptget {
   sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" $@
 }
 
+mysql_root_pass="root"
+
 ## Save mysql password for later use
-echo "mysql-server mysql-server/root_password password root" | sudo debconf-set-selections
-echo "mysql-server mysql-server/root_password_again password root" | sudo debconf-set-selections
+echo "mysql-server mysql-server/root_password password $mysql_root_pass" | sudo debconf-set-selections
+echo "mysql-server mysql-server/root_password_again password $mysql_root_pass" | sudo debconf-set-selections
 
 ## First update
-aptget update
 aptget install software-properties-common
 aptget install python-software-properties
-
-## Add ppa repositories
-sudo add-apt-repository ppa:ondrej/apache2
 sudo add-apt-repository ppa:ondrej/php
-sudo add-apt-repository -y ppa:ondrej/mysql-5.6
 aptget update
 aptget upgrade
 
-## Install Apache 2, PHP 7, MySQL 5.6 and other useful stuffs
-aptget install -y vim
-aptget install -y curl
-aptget install -y sendmail
+## Uninstall Apache2
+sudo service apache2 stop
+aptget purge -y apache2
+aptget -y autoremove
+
+## Install Nginx, PHP 5.6, MySQL 5.6 and other useful stuffs
+aptget install vim
+aptget install curl
+aptget install sendmail
 aptget install git
-aptget install -y apache2
-aptget install -y php7.0
-aptget install -y libapache2-mod-php7.0
-aptget install -y php7.0-curl
-aptget install -y php7.0-gd
-aptget install -y php7.0-mbstring
-aptget install -y php7.0-mcrypt
-aptget install -y php7.0-imap
-aptget install -y php7.0-xml
-aptget install -y php7.0-xdebug
-aptget install -y mysql-server-5.6
-aptget install -y php7.0-mysql
+aptget install nginx
+aptget install mysql-server
+aptget install php7.0
+aptget install php7.0-fpm
+aptget install php7.0-curl
+aptget install php7.0-gd
+aptget install php7.0-mcrypt
+aptget install php7.0-imap
+aptget install php7.0-imagick
+aptget install php7.0-cli
+aptget install php7.0-xdebug
+aptget install php7.0-mysql
 
 ## Change default configurations
-sudo a2enmod rewrite
-sudo sed -i "s/IncludeOptional sites-enabled\/\*\.conf/IncludeOptional \/var\/www\/vagrant-vhost.conf/" /etc/apache2/apache2.conf
-sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.0/cli/php.ini
-sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.0/cli/php.ini
-sudo sed -i "s/;error_log = php_errors.log/error_log = \/var\/www\/log\/php.log/" /etc/php/7.0/cli/php.ini
+sudo sed -i "s/include \/etc\/nginx\/sites-enabled\/\*;/include \/var\/www\/vagrant-nginx;/" /etc/nginx/nginx.conf
+sudo sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/7.0/fpm/php.ini
+sudo sed -i "s/listen = \/run\/php\/php7.0-fpm.sock/listen = \/var\/run\/php\/php7.0-fpm.sock/" /etc/php/7.0/fpm/pool.d/www.conf
+sudo sed -i "s/;listen.owner = www-data/listen.owner = www-data/" /etc/php/7.0/fpm/pool.d/www.conf
+sudo sed -i "s/;listen.group = www-data/listen.group = www-data/" /etc/php/7.0/fpm/pool.d/www.conf
+sudo sed -i "s/;listen.mode = 0660/listen.mode = 0660/" /etc/php/7.0/fpm/pool.d/www.conf
+
+## Fix for MySql on Vagrant
 sudo sed -i "s/skip-external-locking/#skip-external-locking/" /etc/mysql/my.cnf
 sudo sed -i "s/bind-address.*=.*/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
 
-cat << EOF | sudo tee -a /etc/php/7.0/mods-available/xdebug.ini
+cat << EOF | sudo tee -a /etc/php/7.0/fpm/conf.d/20-xdebug.ini
 xdebug.scream=1
 xdebug.cli_color=1
 xdebug.show_local_vars=1
 EOF
 
-## Remove Apache2 main html folder
-rm -r /var/www/html
-
 ## Create log folder
 mkdir -p /var/www/log
 
+## Remove html folder
+rm -r /var/www/html
+
+# Restart PHP5-FPM and Nginx
+sudo service php7.0-fpm restart
+sudo service nginx restart
+
 ## Import base MySQL DB
-mysql --user=root --password=root -e "CREATE DATABASE skeleton; USE skeleton;"
-mysql --user=root --password=root -h localhost skeleton < /var/www/db/dump.sql
+mysql --user=root --password=$mysql_root_pass -e "CREATE DATABASE skeleton; USE skeleton;"
+mysql --user=root --password=$mysql_root_pass -h localhost skeleton < /var/www/db/dump.sql
 
 ## Install Composer
 curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer

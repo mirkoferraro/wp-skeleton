@@ -32,6 +32,7 @@ npm-debug.log
 
 Vagrant
 .vagrant/*
+ubuntu-xenial-16.04-cloudimg-console.log
 
 # Mac
 .DS_Store
