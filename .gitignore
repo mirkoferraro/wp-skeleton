@@ -27,9 +27,10 @@ composer.lock
 # Logs
 log
 
-# NPM
+# NPM/Yarn
 node_modules
 npm-debug.log
+yarn.lock
 
 Vagrant
 .vagrant/*
