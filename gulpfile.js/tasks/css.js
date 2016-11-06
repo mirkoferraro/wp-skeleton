@@ -9,6 +9,9 @@ module.exports = function(gulp, plugins, config, events, paths) {
                     outputStyle: 'nested'
                 })
                 .on('error', plugins.sass.logError))
+			.pipe(plugins.combineMq({
+				beautify: false
+			}))
             .pipe(plugins.autoprefixer({
                 browsers: ['last 2 versions'],
                 cascade: false
