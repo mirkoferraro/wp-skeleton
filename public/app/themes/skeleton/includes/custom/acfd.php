@@ -1,9 +1,9 @@
 <?php
 check_directly_access();
 
-if ( class_exists( 'ACFED' ) && ACFED::is_active() ) {
+if ( class_exists( 'ACFD' ) && ACFD::isActive() ) {
 
-	ACFED::setDefaults('text', array(
+	ACFD::setDefaults('text', array(
 		'placeholder' => 'dadssa'
 	));
 
@@ -15,7 +15,4 @@ if ( class_exists( 'ACFED' ) && ACFED::is_active() ) {
 	$group->addField('content', 'Content', 'wysiwyg');
 	$repeater = $group->addContainer('repeater', 'Repeater', 'repeater');
 	$repeater->addField('item', 'Item', 'text');
-
-	
-	$field = new CustomField( $name, $label, $type );
 }
