@@ -1,3 +1,4 @@
+//=require ../../../../../node_modules/gmaps/gmaps.js
 //=require ../lib/semaphore.js
 
 (function(root) {
