@@ -39,6 +39,28 @@ function print_google_analytics_code() {
 	<?php
 }
 
+
+if ( defined( 'GOOGLE_TAG_MANAGER_ID' ) && ! empty( GOOGLE_TAG_MANAGER_ID ) ) {
+	add_action( 'wp_head', 'print_google_tag_manager_script', 0, 1000 );
+	add_action( 'wp_footer', 'print_google_tag_manager_noscript', 0, 1000 );
+}
+function print_google_tag_manager_script() {
+	?>
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','<?= GOOGLE_TAG_MANAGER_ID; ?>');</script>
+	<?php
+}
+
+function print_google_tag_manager_noscript() {
+	?>
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<?= GOOGLE_TAG_MANAGER_ID; ?>"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<?php
+}
+
 add_action( 'wp_footer', 'print_svg_sprite', 0 );
 function print_svg_sprite() {
 	?>

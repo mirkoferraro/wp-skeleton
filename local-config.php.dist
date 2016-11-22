@@ -11,4 +11,5 @@ define('DB_CHARSET', 'utf8mb4');
 define('DB_COLLATE', '');
 
 define('GOOGLE_ANALYTICS_ID', '');
+define('GOOGLE_TAG_MANAGER_ID', '');
 define('GOOGLE_API_KEY', '');
