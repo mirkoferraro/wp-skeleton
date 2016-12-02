@@ -85,4 +85,30 @@ if ( ! defined( 'ABSPATH' ) ) {
     define( 'ABSPATH', $webroot_dir . '/core/' );
 }
 
+if ( defined( 'MULTISITE' ) && MULTISITE ) {
+	if ( ! defined( 'SUBDOMAIN_INSTALL' ) ) {
+		define( 'SUBDOMAIN_INSTALL', true );
+	}
+
+	if ( ! defined( 'DOMAIN_CURRENT_SITE' ) ) {
+		define( 'DOMAIN_CURRENT_SITE', WP_DOMAIN );
+	}
+
+	if ( ! defined( 'PATH_CURRENT_SITE' ) ) {
+		define( 'PATH_CURRENT_SITE', '/' );
+	}
+
+	if ( ! defined( 'SITE_ID_CURRENT_SITE' ) ) {
+		define( 'SITE_ID_CURRENT_SITE', 1 );
+	}
+
+	if ( ! defined( 'BLOG_ID_CURRENT_SITE' ) ) {
+		define( 'BLOG_ID_CURRENT_SITE', 1 );
+	}
+
+	if ( ! defined( 'WP_ALLOW_MULTISITE' ) ) {
+		define( 'WP_ALLOW_MULTISITE', true );
+	}
+}
+
 require_once( ABSPATH . 'wp-settings.php' );
