@@ -49,7 +49,7 @@ define('SECURE_AUTH_SALT', '');
 define('LOGGED_IN_SALT', '');
 define('NONCE_SALT', '');
 ```
-The deploy script create the wp-keys.php file for you by using the generated keys from [https://api.wordpress.org/secret-key/1.1/salt](https://api.wordpress.org/secret-key/1.1/salt/).
+Skeleton try to generate it on first page loading, otherwise you can create your own file from [https://api.wordpress.org/secret-key/1.1/salt](https://api.wordpress.org/secret-key/1.1/salt/).
 
 
 ## Migrations
@@ -59,16 +59,6 @@ Create a php file in the **migrations** folder, name it using a date-time patter
 
 Launch the migration.php file from the terminal: ```php migration.php```
 
-
-## Development with Vagrant
-
-Open the Vagrantfile and edit ```skeleton``` in the first line (```HOSTNAME = "skeleton.vagrant.test"```). This will be your local server name for development purpose.
-
-Use ```vagrant up``` command to open the Vagrant VM. The first time you run this command it create a virtual machine with Apache 2, PHP 7 and MySql 5.6.
-
-Now you can view your site at ```yoursite.vagrant.test```.
-
-You can found the Apache and PHP log files into the *log* folder into your project directory.
 
 ## Gulp tasks
 

@@ -9,6 +9,7 @@ $server_port = isset ( $_SERVER['SERVER_PORT'] ) ? $_SERVER['SERVER_PORT'] : '';
 
 // Project config
 $config_path = '/local-config.php';
+$wp_keys_file = 'wp-keys.php';
 
 // Check for required files
 if ( ! file_exists( $root_dir . '/vendor/autoload.php' ) ) {
@@ -19,8 +20,20 @@ if ( ! file_exists( $root_dir . $config_path ) ) {
     die( 'Missing project config: create the <i>local-config.php</i> file' );
 }
 
-if ( ! file_exists( $root_dir . '/wp-keys.php' ) ) {
-    die( 'Missing wp-keys.php: generate keys at <a href="https://api.wordpress.org/secret-key/1.1/salt/" target="_blank">https://api.wordpress.org/secret-key/1.1/salt/</a>' );
+if ( ! file_exists( $root_dir . '/' . $wp_keys_file ) ) {
+
+	$secret_keys_url = 'https://api.wordpress.org/secret-key/1.1/salt/';
+
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $secret_keys_url );
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	$secret_keys_content = curl_exec($ch);
+	curl_close($ch);
+
+	if ( ! file_put_contents( $root_dir . '/' . $wp_keys_file, "<?php\n" . $secret_keys_content ) ) {
+    	die( 'Cannot create file ' . $wp_keys_file . ': generate keys at <a href="' . $secret_keys_url . '" target="_blank">' . $secret_keys_url . '</a>' );
+	}
+
 }
 
 require_once( $root_dir . '/vendor/autoload.php' ); // Composer
