@@ -390,7 +390,6 @@ CREATE TABLE `wp_users` (
 
 LOCK TABLES `wp_users` WRITE;
 /*!40000 ALTER TABLE `wp_users` DISABLE KEYS */;
-INSERT INTO `wp_users` VALUES (1,'skeleton','$2y$10$lDO5/rRZcbxUK7lK54YnJuO9WzKgN/Ol8hBxgR61G9qQ/QZrTIeOa','skeleton','admin@skeleton.com','','2016-01-01 00:00:00','',0,'skeleton');
 /*!40000 ALTER TABLE `wp_users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

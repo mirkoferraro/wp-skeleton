@@ -35,6 +35,15 @@ Use ```sh deploy.sh``` command to install:
 * Launch the build task of Gulp
 
 
+## Database
+Copy the *local-config.php.dist* to *local-config.php* and change the settings inside it.
+
+Then you can use the WP-CLI to import the default database dump
+```
+wp db import db/dump.sql
+```
+
+
 ## WP Secret Keys
 The standard WP's secret keys are moved to wp-keys.php file.
 
@@ -68,15 +77,8 @@ Use ```gulp build``` on your production server (svg, img, favicon, js, css and v
 
 
 ## Administrator User
-Administrator user have the following credentials:
+Create your administrator user:
 ```
-username: skeleton
-password: skeleton
-```
-
-You can delete the previous administrator and create a new one:
-```
-wp user delete 1
 wp user create yourusername your@email.com --role=administrator
 ```
 
