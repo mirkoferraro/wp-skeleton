@@ -1,3 +1,5 @@
+//=require ../../../../node_modules/moment/moment.js
+
 //=require lib/extend.js
 
 //=require main/conditionizr.js
