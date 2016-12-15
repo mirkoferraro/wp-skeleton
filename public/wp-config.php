@@ -7,11 +7,8 @@ $webroot_dir = $root_dir . '/public';
 $server_name = isset ( $_SERVER['SERVER_NAME'] ) ? $_SERVER['SERVER_NAME'] : '';
 $server_port = isset ( $_SERVER['SERVER_PORT'] ) ? $_SERVER['SERVER_PORT'] : '';
 
-// Support for Vagrant
-$is_vagrant = strpos( php_uname(), 'skeleton' ) !== false;
-
 // Project config
-$config_path = '/' . ( $is_vagrant ? 'vagrant-' : '' ) . 'local-config.php';
+$config_path = '/local-config.php';
 
 // Check for required files
 if ( ! file_exists( $root_dir . '/vendor/autoload.php' ) ) {
