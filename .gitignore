@@ -1,6 +1,6 @@
 # Application
 assets_versions.php
-config.php
+local-config.php
 performance_output.json
 public/app/upgrade
 public/assets/css/*
