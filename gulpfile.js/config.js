@@ -188,7 +188,6 @@ module.exports = function( plugins, paths ) {
             'img',
             'build',
             'favicon',
-            'help',
             'version',
             'watch',
             'performance'
