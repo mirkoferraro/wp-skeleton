@@ -5,15 +5,17 @@
 
 	var
 	map_loaded = false,
-	queue      = new Semaphore();
+	sem      = new Semaphore();
 
+	sem.sleep();
+	
 	root.initMap = function() {
 		map_loaded = true;
-		queue.awake();
+		sem.awake();
 	};
 
 	root.onMapLoaded = function( callback ) {
-		queue.put( callback, map_loaded );
+		sem.put( callback, map_loaded );
 	};
 
 })(this);
