@@ -4,44 +4,28 @@ WpSkeleton is a starter kit for WordPress that helps you with the development of
 
 This project is the result of more than one year of high-level work with WordPress.
 
+
 ## Features
 
 * Better folder structure
 * Dependency management with Composer (also plugins) and NPM
 * Support for WP-CLI
-* Easy vm build with Vagrant
+
 
 ## Requirements
 
 * PHP >= 5.6
 * Composer
-* NPM
+* NodeJs
 * Gulp
 * WP-CLI
 
+
 ## Installation
 
-Use ```sh deploy.sh``` command to install:
-
-* Composer (if not installed yet)
-* wp-cli (if not installed yet)
-* NodeJs (if not installed yet)
-* Gulp (if not installed yet)
-* WordPress
-* WP Secret Keys
-* NPM dependencies
-* Composer dependencies
-* Execute migration scripts
-* Launch the build task of Gulp
-
-
-## Database
-Copy the *local-config.php.dist* to *local-config.php* and change the settings inside it.
-
-Then you can use the WP-CLI to import the default database dump
-```
-wp db import db/dump.sql
-```
+ * Use ```wp core download``` command to install WP CORE.
+ * Use ```npm install``` command to install the node modules
+ * Use ```composer install``` command to install the composer vendors
 
 
 ## WP Secret Keys
@@ -59,6 +43,15 @@ define('LOGGED_IN_SALT', '');
 define('NONCE_SALT', '');
 ```
 Skeleton try to generate it on first page loading, otherwise you can create your own file from [https://api.wordpress.org/secret-key/1.1/salt](https://api.wordpress.org/secret-key/1.1/salt/).
+
+
+## Database
+Copy the *local-config.php.dist* to *local-config.php* and change the settings inside it.
+
+Then you can use the WP-CLI to import the default database dump
+```
+wp db import db/dump.sql
+```
 
 
 ## Migrations
