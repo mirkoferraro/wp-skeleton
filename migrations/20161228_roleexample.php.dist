@@ -1,0 +1,38 @@
+<?php
+
+add_role( 'customrole', 'CustomRole', array(
+    'read'          => true,
+    'edit_posts'    => false,
+    'delete_posts'  => false,
+    'publish_posts' => false,
+    'upload_files'  => false,
+) );
+
+$roles_cap = array(
+	'custompost' => array( 'administrator', 'customrole' ),
+);
+
+foreach ( $roles_cap as $cap => $roles ) {
+  foreach( $roles as $role_str ) {
+    $role = get_role( $role_str );
+
+    if ( ! $role ) {
+      continue;
+    }
+
+    $role->add_cap( "read" );
+    $role->add_cap( "read_cap_{$cap}" );
+    $role->add_cap( "read_private_cap_{$cap}s" );
+    $role->add_cap( "edit_cap_{$cap}" );
+    $role->add_cap( "edit_cap_{$cap}s" );
+    $role->add_cap( "edit_others_cap_{$cap}s" );
+    $role->add_cap( "edit_private_cap_{$cap}s" );
+    $role->add_cap( "edit_published_cap_{$cap}s" );
+    $role->add_cap( "delete_cap_{$cap}" );
+    $role->add_cap( "delete_cap_{$cap}s" );
+    $role->add_cap( "delete_private_cap_{$cap}s" );
+    $role->add_cap( "delete_published_cap_{$cap}s" );
+    $role->add_cap( "delete_others_cap_{$cap}s" );
+    $role->add_cap( "publish_cap_{$cap}s" );
+  }
+}
