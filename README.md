@@ -88,6 +88,16 @@ wp option update admin_email your@email.com
 ```
 
 
+## Private Files
+You can use ```register_private_file``` function in order to manage authorized access to files.
+
+
+For example the following code authorizes users that have capability ```read_myfiles``` (see [current_user_can()](https://codex.wordpress.org/Function_Reference/current_user_can) function) to access to URL like ```yoursite.com/myfiles/myimage.jpg``` and view the relative file stored in ```private/myfolder```.
+```
+register_private_file( 'myfiles', 'myfolder/', 'read_myfiles');
+```
+
+
 ## Javascript integrations
 
 ### Event Wrappers

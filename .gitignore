@@ -3,6 +3,8 @@ assets_versions.php
 local-config.php
 ignore
 performance_output.json
+private/*
+!private/.htaccess
 public/app/upgrade
 public/assets/css/*
 !public/assets/css/lib
