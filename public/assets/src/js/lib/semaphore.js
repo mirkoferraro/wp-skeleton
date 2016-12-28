@@ -1,36 +1,45 @@
 function Semaphore() {
 	var
-	busy = false,
-	queue = [];
+	_sleep = false,
+	_busy = false,
+	_queue = [];
 
-	var put = function( callback, immediately ) {
+	function put( callback ) {
 		if ( typeof callback !== 'function' ) {
 			return;
 		}
 
-		queue.push( callback );
+		_queue.push( callback );
 
-		if ( typeof immediately === 'undefined' ) {
-			immediately = true;
-		}
-
-		if ( immediately && ! busy ) {
+		if ( ! _sleep && ! _busy ) {
 			awake();
 		}
-	};
+	}
 
-	var awake = function() {
-		if ( ! busy && queue.length ) {
-			busy = true;
-			var func = queue.shift();
+	function awake() {
+		_sleep = false;
+
+		if ( ! _busy && _queue.length ) {
+			_busy = true;
+
+			var func = _queue.shift();
 			func();
-			busy = false;
-			awake();
+			
+			_busy = false;
+
+			if ( ! _sleep ) {
+				awake();
+			}
 		}
-	};
+	}
+
+	function sleep() {
+		_sleep = true;
+	}
 
 	return {
 		put: put,
-		awake: awake
+		awake: awake,
+		sleep: sleep
 	};
 }
