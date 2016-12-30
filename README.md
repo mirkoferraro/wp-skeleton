@@ -23,7 +23,7 @@ This project is the result of more than one year of high-level work with WordPre
 
 ## Installation
 
- * Use ```wp core download``` command to install WP CORE.
+ * Use ```wp core download``` command to install WP core.
  * Use ```npm install``` command to install the node modules
  * Use ```composer install``` command to install the composer vendors
 
