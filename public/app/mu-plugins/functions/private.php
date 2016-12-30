@@ -14,7 +14,7 @@ function private_files_redirect() {
         if ( strpos( $_SERVER['REQUEST_URI'], '/' . $private_file['base_url'] . '/' ) !== false ) {
 
             $file = substr( $_SERVER['REQUEST_URI'], 9 );
-            $path = ABSPATH . '../../private/' . $private_file['base_path'] . $file;
+            $path = PRIVATE_DIR . $private_file['base_path'] . $file;
 
             if ( file_exists( $path ) && current_user_can( $private_file['capability'] ) ) {
 
