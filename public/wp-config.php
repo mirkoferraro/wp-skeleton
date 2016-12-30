@@ -70,6 +70,7 @@ define( 'CONTENT_DIR', '/app' );
 define( 'WP_CONTENT_DIR', $webroot_dir . CONTENT_DIR );
 define( 'WP_CONTENT_URL', WP_DOMAIN . CONTENT_DIR );
 define( 'UPLOADS', '../up' ); // Relative to WP_SITEURL
+define( 'PRIVATE_DIR', $root_dir . '/private' );
 
 define( 'WP_ALLOW_REPAIR', false ); // In order to repair a corrupted database put this to true and visit /wp-admin/maint/repair.php
 
