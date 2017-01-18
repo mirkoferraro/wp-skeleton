@@ -174,37 +174,37 @@ function view() {
 
     if ( count( $args ) === 1 && is_array( $first = reset( $args ) ) ) {
 
-	    $hierarchy = array_map( function( $tmp ) use ( $slug ) {
-	        return "views/{$slug}-{$tmp}.php";
-	    }, $first );
+				$hierarchy = array_map( function( $tmp ) use ( $slug ) {
+						return "views/{$slug}-{$tmp}.php";
+				}, $first );
 
-    	$hierarchy[] = "views/{$slug}.php";
+				$hierarchy[] = "views/{$slug}.php";
 
     } elseif ( count( $args ) ) {
 
-    	$hierarchy[] = "{$slug}";
+				$hierarchy[] = "{$slug}";
 
-	    foreach ( $args as $arg ) {
-	        if ( $arg != null && $arg && is_string( $arg ) ) {
-	        	$hierarchy[] = $hierarchy[ count( $hierarchy ) - 1 ] . "-{$arg}";
-	        }
-	    }
+				foreach ( $args as $arg ) {
+						if ( $arg != null && $arg && is_string( $arg ) ) {
+							$hierarchy[] = $hierarchy[ count( $hierarchy ) - 1 ] . "-{$arg}";
+						}
+				}
 
-	    $hierarchy = array_map( function( $tmp ) {
-	        return "views/{$tmp}.php";
-	    }, $hierarchy );
+				$hierarchy = array_map( function( $tmp ) {
+						return "views/{$tmp}.php";
+				}, $hierarchy );
 
-	    $hierarchy = array_reverse( $hierarchy );
+				$hierarchy = array_reverse( $hierarchy );
 
     } else {
 
-        $hierarchy = get_view_hierarchy();
+				$hierarchy = get_view_hierarchy();
 
-	    $hierarchy = array_map( function( $tmp ) use ( $slug ) {
-	        return "views/{$slug}-{$tmp}";
-	    }, $hierarchy );
+				$hierarchy = array_map( function( $tmp ) use ( $slug ) {
+						return "views/{$slug}-{$tmp}";
+				}, $hierarchy );
 
-    	$hierarchy[] = "views/{$slug}.php";
+				$hierarchy[] = "views/{$slug}.php";
     }
 
     $view_path = locate_template( $hierarchy, false );
