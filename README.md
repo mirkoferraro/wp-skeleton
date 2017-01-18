@@ -81,6 +81,17 @@ wp option update admin_email your@email.com
 ```
 
 
+## Theme functions
+You can use ```view``` and ```component``` functions in order to print the templates contained in theme's ```views``` and ```components``` directory.
+
+
+The ```view``` function use a hierarchical logic (like WP core) in order to print the right template based on the current main WP query.
+
+
+The ```component``` function have no logic, simply print a template using the arguments passed to it.
+
+
+
 ## Private Files
 You can use ```register_private_file``` function in order to manage authorized access to files.
 
