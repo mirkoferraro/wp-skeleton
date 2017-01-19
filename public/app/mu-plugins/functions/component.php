@@ -2,9 +2,9 @@
 
 function component( $name, $args = array(), $repeat = false ) {
 
-		if ( ! is_array( $args) ) {
+	if ( ! is_array( $args) ) {
         throw new Exception( 'Invalid argument \'args\' in component function', 1 );
-		}
+	}
 
     $name = apply_filters( 'filter_component_name', $name, $args );
     $args = apply_filters( 'filter_component_args', $args, $name );
@@ -12,26 +12,37 @@ function component( $name, $args = array(), $repeat = false ) {
 
     $component_path = locate_template( array( "components/{$name}.php" ), false );
 
-		if ( $repeat ) {
+	if ( $repeat ) {
 
-				foreach ( $args as $sub ) {
+		foreach ( $args as $sub ) {
 
-						if ( count( $sub ) ) {
-								extract( $sub );
-						}
+			if ( count( $sub ) ) {
+				extract( $sub );
+			}
 
-						include $component_path;
-
-				}
-
-		} else {
-
-				if ( count( $args ) ) {
-						extract( $args );
-				}
-
-				include $component_path;
+			include $component_path;
 
 		}
+
+	} else {
+
+		if ( count( $args ) ) {
+			extract( $args );
+		}
+
+		include $component_path;
+
+	}
+
+}
+
+
+function components( $name, $args ) {
+
+	if ( ! is_array( $args) ) {
+		return;
+	}
+
+	component( $name, $args, true );
 
 }
