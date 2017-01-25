@@ -77,7 +77,9 @@ class BulkAction {
 	}
 
 	static function edit_action() {
-        self::action( 'WP_Users_List_Table', 'post' );
+        if ( isset( $_GET['post_type'] ) ) {
+            self::action( 'WP_Posts_List_Table', $_GET['post_type'] );
+        }
 	}
 
 	static function user_action() {
@@ -92,29 +94,27 @@ class BulkAction {
 		$wp_list_table = _get_list_table( $list_table_class );
 
         if ($wp_list_table) {
-            $action   = $wp_list_table->current_action();
-            $ids = self::get_ids( $hook );
+            $action = $wp_list_table->current_action();
+            $ids    = self::get_ids( $hook );
 
-            if ( ! count( $ids ) ) {
+            if ( ! count( $ids ) || ! isset( self::$actions[$hook][$action] ) ) {
                 return;
             }
 
-            foreach ( self::$actions[$hook] as $bulkaction ) {
-                $bulkaction->do_action( $ids );
-            }
+            self::$actions[$hook][$action]->do_action( $ids );
         }
 	}
 
     static function get_ids( $hook ) {
 
         switch ( $hook ) {
-            case 'post':
-                if ( isset( $_GET['post'] ) ) {
-                    return $_GET['post'];
-                }
             case 'user':
                 if ( isset( $_GET['users'] ) ) {
                     return $_GET['users'];
+                }
+            default:
+                if ( isset( $_GET['post'] ) ) {
+                    return $_GET['post'];
                 }
         }
 
