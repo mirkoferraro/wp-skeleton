@@ -40,6 +40,7 @@ require_once( $root_dir . '/vendor/autoload.php' ); // Composer
 require_once( $root_dir . $config_path ); // Project config
 include_once( $root_dir . '/wp-keys.php' ); // Generate keys here: https://api.wordpress.org/secret-key/1.1/salt/
 
+define( 'ROOT_DIR', $root_dir );
 define( 'WP_DIR', $webroot_dir );
 define( 'WPLANG', 'it_IT' );
 define( 'WP_LANG_DIR', $webroot_dir . '/app/languages' );
