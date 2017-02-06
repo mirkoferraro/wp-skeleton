@@ -33,6 +33,7 @@
     "wpackagist-plugin/google-analytics-for-wordpress": "^5.5",
     "wpackagist-plugin/google-pagespeed-insights": "^1.0",
     "wpackagist-plugin/post-types-order": "1.8.9.2",
+    "wpackagist-plugin/redirection": "2.5",
     "wpackagist-plugin/regenerate-thumbnails": "^2.2",
     "wpackagist-plugin/rest-api": "2.0-beta13",
     "wpackagist-plugin/updraftplus": "^1.12",
