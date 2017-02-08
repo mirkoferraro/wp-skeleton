@@ -23,9 +23,19 @@ This project is the result of more than one year of high-level work with WordPre
 
 ## Installation
 
- * Use ```wp core download``` command to install WP core.
- * Use ```npm install``` command to install the node modules
+ * Use ```wp core download``` command to install WP core
+ * Use ```npm install``` (or ```yarn``` if you prefer) command to install the node modules
  * Use ```composer install``` command to install the composer vendors
+
+
+## Plugin installation
+Plugins are manages by Composer, using the [WpPackagist](https://wpackagist.org/) repository.
+
+If you want to install a plugin that isn't in the WpPackagist repository follow this instructions:
+ * Copy the plugin' folder in the ```public/app/plugins``` directory
+ * Edit the .gitignore file and add ```!public/app/plugins/{plugin-name}``` after ```public/app/plugins/*```
+ 
+ ```!public/app/plugins/your-plugin-name```
 
 
 ## WP Secret Keys
