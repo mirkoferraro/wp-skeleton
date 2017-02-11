@@ -43,3 +43,5 @@ function Semaphore() {
 		sleep: sleep
 	};
 }
+
+module.exports = Semaphore;

@@ -1,4 +1,4 @@
-//=require ../lib/facebook-sdk.js
+require('../lib/facebook-sdk');
 
 var
 appId     = '',
