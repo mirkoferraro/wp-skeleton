@@ -112,6 +112,10 @@ register_private_file( 'myfiles', 'myfolder/', 'read_myfiles');
 ```
 
 
+## Dates
+Skeleton uses [Carbon](http://carbon.nesbot.com/) in PHP and [Moment](https://momentjs.com/) in Javascript for dates management.
+
+
 ## Javascript integrations
 
 ### Event Wrappers
