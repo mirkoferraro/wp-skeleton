@@ -1,76 +1,70 @@
 <?php
 
-// class CronManager {
+use Cron\CronExpression;
+
+class CronManager {
     
-//     public function init() {
+    private static $crons = array();
+    private static $functions = array();
 
-//     }
+    public static function init() {
+        self::_load();
+    }
 
-//     public function convert_cron_expression( $expression ) {
-//         if ( ! is_array( $expression ) ) {
-//             $expression = explode( ' ', $expression );
-//         }
+    public static function register( $name, $recurrence, $function ) {
+        add_action( self::_actionName( $name ), $function );
+        self::$functions[$name] = $function;
 
-//         if ( count( $expression ) !== 5 ) {
-//             return;
-//         }
+        if ( ! isset( self::$crons[$name] ) || self::$crons[$name]['recurrence'] != $recurrence ) {
+            self::$crons[$name] = array(
+                'recurrence' => $recurrence,
+                'last_run'   => time()
+            );
+            self::_save();
+        }
+    }
 
+    public static function unregister( $name ) {
+        if ( ! isset( self::$crons[$name] ) || ! isset( self::$functions[$name] ) ) {
+            return;
+        }
 
-//         '*'
-//         '*/n'
-//         'n'
-//     }
+        remove_action( self::_actionName( $name ), self::$functions[$name] );
+        unset( self::$crons[$name] );
+        self::_save();
+    }
 
-//     public function run() {
+    private static function _load() {
+        self::$crons = get_option( 'crons' );
+    }
 
-//     }
+    private static function _save() {
+        update_option( 'crons', self::$crons );
+    }
 
-// }
+    private static function _actionName( $name ) {
+        return "cron_{$name}";
+    }
 
-// add_action( 'init', 'CronManager::init' );
+    private static function _runCron( $name ) {
+        do_action( self::_actionName( $name ) );
 
-// array(
-//     'day' => 'every', //1 = first day, last = last day
-//     'month' => 'every',
-//     'year' => 'every',
-//     'hour' => 'every',
-//     'minute' => 'every',
-//     'second' => 'every',
-// )
+        if ( isset( self::$crons[$name] ) ) {
+            self::$crons[$name]['last_run'] = time();
+            self::_save();
+        }
+    }
 
-// abstract class Cron {
+    public static function run() {
+        foreach ( self::$crons as $name => $crondata ) {
+            $cronexp = CronExpression::factory( $crondata['recurrence'] );
+            $prevDate = $cronexp->getPreviousRunDate();
 
-//     private $name;
-//     private $timestamp;
-//     private $recurrence;
+            if ( $prevDate->getTimeStamp() > $crondata['last_run'] ) {
+                self::_runCron( $name );
+            }
+        }
+    }
+}
 
-//     public function __construct( $name, $timestamp, $recurrence ) {
-//         $this->name       = $name;
-//         $this->timestamp  = $timestamp;
-//         $this->recurrence = $recurrence;
-//     }
-
-//     abstract function run();
-// }
-
-// class MyCron extends Cron {
-
-//     public function __construct() {
-//         parent::__construct( 'MyCron', '*/*/* *:*' );
-//         $this->name       = $name;
-//         $this->recurrence = $recurrence;
-//     }
-
-//     public function run() {
-
-//     }
-
-// }
-
-// add_filter( 'cron_schedules', 'filter_cron_schedules' );
-// function filter_cron_schedules( $schedules ) {
-//     $schedules['hourly']     = array( 'interval' => HOUR_IN_SECONDS,      'display' => __( 'Once Hourly' ) );
-//     $schedules['twicedaily'] = array( 'interval' => 12 * HOUR_IN_SECONDS, 'display' => __( 'Twice Daily' ) );
-//     $schedules['daily']      = array( 'interval' => DAY_IN_SECONDS,       'display' => __( 'Once Daily' ) );
-//     return $schedules;
-// }
+CronManager::init();

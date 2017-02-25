@@ -133,3 +133,18 @@ onMapLoaded( function() { ... } );
 ```
 
 All your callbacks will be called after the firing of the *initMap* function.
+
+
+
+## Cron Manager
+Default WP crons are disabled in Skeleton, we suggest you to use the internal CronManager class in order to improve the efficency of your tasks.
+
+First of all you should create a real cron using the command ```crontab -e``` and adding the following line:
+```
+*/5 * * * * php /path/to/project/cron.php
+```
+
+This will run the CronManager every 5 minutes.
+
+Now you can create your own cron task in ```public/app/mu-plugins/skeleton/crons``` folder.
+See the ```cron_example.php.dist```

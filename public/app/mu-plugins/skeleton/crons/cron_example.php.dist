@@ -1,0 +1,6 @@
+<?php
+
+CronManager::register( 'example', '* * * * *', 'cron_example_function' );
+function cron_example_function() {
+    // do something
+}

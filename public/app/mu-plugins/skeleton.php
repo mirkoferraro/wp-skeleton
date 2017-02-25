@@ -63,5 +63,6 @@ function include_glob( $path ) {
 \*------------------------------------*/
 include_folders( __DIR__ . '/skeleton', array(
 	'functions',
+	'crons',
 	'custom',
 ) );
