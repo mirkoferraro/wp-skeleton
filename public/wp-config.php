@@ -60,6 +60,7 @@ define( 'IMAGE_EDIT_OVERWRITE', true ); // Delete old versions of images
 define( 'DISABLE_WP_CRON', true ); // Disable the cron system
 define( 'WP_CRON_LOCK_TIMEOUT', 900 ); // Define the interval between the crons
 define( 'AUTOSAVE_INTERVAL', -1 ); // Define the interval between auto-saves in wp-admin (-1: disabled)
+define( 'ALLOW_UNFILTERED_UPLOADS', true ); // Allows users to upload everything
 
 define( 'WP_PORT', ($server_port == 80 || $server_port == 443) ? '' : ':' . $server_port );
 define( 'WP_PROTOCOL', ($server_port == 443) ? 'https://' : 'http://' );
