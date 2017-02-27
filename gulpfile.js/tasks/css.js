@@ -1,6 +1,9 @@
 module.exports = function(gulp, plugins, config, events, paths) {
     return function() {
-        return gulp.src([paths.css.src + '/*.scss'])
+        return gulp.src([
+                paths.css.src + '/*.scss',
+                paths.src + '/../../../src/modules/**/*.scss'
+            ])
 		    .pipe(plugins.plumber({
 		        errorHandler: events.onError
 		    }))

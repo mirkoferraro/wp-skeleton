@@ -1,5 +1,9 @@
 module.exports = function (gulp, plugins, config, events, paths) {
     return function() {
+		if (!config.critical) {
+			return;
+		}
+
 		var
 		request     = require('request'),
 		path        = require( 'path' ),

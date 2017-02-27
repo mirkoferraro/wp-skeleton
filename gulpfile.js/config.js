@@ -1,8 +1,6 @@
-var localhost ='http://skeleton.dev';
-
-module.exports = function( plugins, paths ) {
-    return {
-    	localhost: localhost,
+module.exports = function( plugins, paths, local ) {
+    var data = {
+    	localhost: local.localhost,
         version: {
             clean: [
                 paths.css.dest + '/*.min.*.css',
@@ -44,17 +42,8 @@ module.exports = function( plugins, paths ) {
                 themeColor: '#5bbad5'
             }
         },
-        browserSync: {
-            proxy: localhost,
-            open: false,
-            socket: {
-                domain: 'localhost:3000'
-            }
-        },
-        critical: {
-        	base_url: localhost,
-        	main_css: localhost + paths.css.dest.substr(8) + '/main.min.css',
-        },
+        browserSync: false,
+        critical: false,
 		webpack: {
 			output: {
 				filename: '[name].js',
@@ -232,5 +221,22 @@ module.exports = function( plugins, paths ) {
                 tasks: ['browserSyncReload']
             }
         }
-    }
+    };
+
+	if (typeof local.localhost !== 'undefined') {
+		data.browserSync = {
+			proxy: local.localhost,
+			open: false,
+			socket: {
+				domain: 'localhost:3000'
+			}
+		};
+
+		local.critical = {
+			base_url: local.localhost,
+			main_css: local.localhost + paths.css.dest.substr(8) + '/main.min.css',
+		};
+	}
+
+	return data;
 };

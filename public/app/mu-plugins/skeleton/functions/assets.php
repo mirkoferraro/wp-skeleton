@@ -12,7 +12,7 @@ function assets_url( $type = null ) {
 }
 
 function assets_path( $type = null ) {
-	$url = WP_DIR . '/assets';
+	$url = PUBLIC_DIR . '/assets';
 
 	if ($type != null && in_array($type, array('css', 'favicons', 'fonts', 'img', 'js'))) {
 		$url .= '/' . $type;
@@ -149,7 +149,7 @@ function font_loader() {
 
 	?>
 	<script type="text/javascript">
-	<?php include WP_DIR . '/../node_modules/fontfaceobserver/fontfaceobserver.standalone.js'; ?>
+	<?php include PUBLIC_DIR . '/../node_modules/fontfaceobserver/fontfaceobserver.standalone.js'; ?>
 	var
 	fonts = {
 		<?php foreach ( $font_face_observer as $fontfamily => $weights ) : ?>
@@ -206,7 +206,7 @@ function browser_sync_snippet() {
 		return;
 	}
 
-	$browser_sync_json_path = WP_DIR . '/../node_modules/browser-sync/package.json';
+	$browser_sync_json_path = PUBLIC_DIR . '/../node_modules/browser-sync/package.json';
 	if ( ! file_exists( $browser_sync_json_path ) ) {
 		return;
 	}

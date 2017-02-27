@@ -1,5 +1,8 @@
 # Application
 assets_versions.php
+config/db.php
+config/gulp.js
+config/keys.php
 local-config.php
 ignore
 performance_output.json
@@ -14,7 +17,6 @@ public/assets/js/*
 !public/assets/js/lib
 public/up/*
 !public/up/.htaccess
-wp-keys.php
 
 # WordPress
 public/core
