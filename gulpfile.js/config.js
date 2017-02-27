@@ -1,4 +1,4 @@
-var localhost ='http://skeleton.vagrant.test';
+var localhost ='http://skeleton.dev';
 
 module.exports = function( plugins, paths ) {
     return {
@@ -55,6 +55,24 @@ module.exports = function( plugins, paths ) {
         	base_url: localhost,
         	main_css: localhost + paths.css.dest.substr(8) + '/main.min.css',
         },
+		webpack: {
+			output: {
+				filename: '[name].js',
+			},
+			module: {
+				loaders: [{
+					test: /\.vue$/,
+					loader: 'vue-loader',
+					options: {
+						loaders: {
+							'js': 'babel-loader',
+							'scss': 'vue-style-loader!css-loader!sass-loader',
+							'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
+						}
+					}
+				}],
+			},
+		},
         performanceBudget: {
 			medianLatency: 2000,
 			medianResponse: 2000,

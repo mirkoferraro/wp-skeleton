@@ -1,4 +1,5 @@
-//=require ../lib/throttle.js
+var Throttler = require('../lib/throttle/Throttler');
+var Debouncer = require('../lib/throttle/Debouncer');
 
 var ScrollWrapper = new Throttler(300, function() {
 	var
@@ -23,3 +24,6 @@ var ResizeWrapper = new Debouncer(300, function() {
 
 window.addEventListener('scroll', ScrollWrapper.run);
 window.addEventListener('resize', ResizeWrapper.run);
+
+window.ScrollWrapper = ScrollWrapper;
+window.ResizeWrapper = ResizeWrapper;

@@ -1,11 +1,11 @@
 module.exports = function (gulp, plugins, config, events, paths) {
     return function() {
-        return gulp.src(paths.js.src + '/*.js')
+        return gulp.src([paths.js.src + '/*.js'])
 		    .pipe(plugins.plumber({
 		        errorHandler: events.onError
 		    }))
             .pipe(plugins.sourcemaps.init())
-            .pipe(plugins.include())
+            .pipe(plugins.webpack(config.webpack))
             .pipe(plugins.uglify())
             .pipe(plugins.rename(function(path) {
                 path.basename += ".min";
