@@ -19,29 +19,29 @@ function get_view_hierarchy() {
 		if ( ! empty( $object->post_type ) ) {
 			$post_format = get_post_format( $object );
 			if ( $post_format ) {
-				$hierarchy[] = "embed-{$object->post_type}-{$post_format}.php";
+				$hierarchy[] = "embed-{$object->post_type}-{$post_format}";
 			}
-			$hierarchy[] = "embed-{$object->post_type}.php";
+			$hierarchy[] = "embed-{$object->post_type}";
 		}
 
-		$hierarchy[] = "embed.php";
+		$hierarchy[] = "embed";
 
     } elseif ( is_404() ) {
 
-		$hierarchy[] = '404.php';
+		$hierarchy[] = '404';
 
     } elseif ( is_search() ) {
 
-		$hierarchy[] = 'search.php';
+		$hierarchy[] = 'search';
 
     } elseif ( is_front_page() ) {
 
-		$hierarchy[] = 'front-page.php';
+		$hierarchy[] = 'front-page';
 
     } elseif ( is_home() ) {
 
-		$hierarchy[] = 'archive-post.php';
-		$hierarchy[] = 'home.php';
+		$hierarchy[] = 'archive-post';
+		$hierarchy[] = 'home';
 
     } elseif ( is_attachment() ) {
 
@@ -55,23 +55,23 @@ function get_view_hierarchy() {
 			}
 
 			if ( ! empty( $subtype ) ) {
-				$hierarchy[] = "{$type}-{$subtype}.php";
-				$hierarchy[] = "{$subtype}.php";
+				$hierarchy[] = "{$type}-{$subtype}";
+				$hierarchy[] = "{$subtype}";
 			}
-			$hierarchy[] = "{$type}.php";
+			$hierarchy[] = "{$type}";
 		}
-		$hierarchy[] = 'attachment.php';
+		$hierarchy[] = 'attachment';
 
     } elseif ( is_single() ) {
 
 		$object = get_queried_object();
 
 		if ( ! empty( $object->post_type ) ) {
-			$hierarchy[] = "single-{$object->post_type}-{$object->post_name}.php";
-			$hierarchy[] = "single-{$object->post_type}.php";
+			$hierarchy[] = "single-{$object->post_type}-{$object->post_name}";
+			$hierarchy[] = "single-{$object->post_type}";
 		}
 
-		$hierarchy[] = "single.php";
+		$hierarchy[] = "single";
 
     } elseif ( is_page() ) {
 
@@ -90,43 +90,43 @@ function get_view_hierarchy() {
     		$hierarchy[] = "template-{$template_slug}";
 		}
 		if ( $pagename ) {
-			$hierarchy[] = "page-$pagename.php";
+			$hierarchy[] = "page-$pagename";
 		}
 		if ( $id ) {
-			$hierarchy[] = "page-$id.php";
+			$hierarchy[] = "page-$id";
 		}
-		$hierarchy[] = 'page.php';
+		$hierarchy[] = 'page';
 
     } elseif ( is_author() ) {
 
 		if ( $author instanceof WP_User ) {
-			$hierarchy[] = "author-{$author->user_nicename}.php";
-			$hierarchy[] = "author-{$author->ID}.php";
+			$hierarchy[] = "author-{$author->user_nicename}";
+			$hierarchy[] = "author-{$author->ID}";
 		}
 
-		$hierarchy[] = 'author.php';
+		$hierarchy[] = 'author';
 
     } elseif ( is_category() ) {
 
 		$category = get_queried_object();
 
 		if ( ! empty( $category->slug ) ) {
-			$hierarchy[] = "category-{$category->slug}.php";
-			$hierarchy[] = "category-{$category->term_id}.php";
+			$hierarchy[] = "category-{$category->slug}";
+			$hierarchy[] = "category-{$category->term_id}";
 		}
 
-		$hierarchy[] = 'category.php';
+		$hierarchy[] = 'category';
 
     } elseif ( is_tag() ) {
 
 		$tag = get_queried_object();
 
 		if ( ! empty( $tag->slug ) ) {
-			$hierarchy[] = "tag-{$tag->slug}.php";
-			$hierarchy[] = "tag-{$tag->term_id}.php";
+			$hierarchy[] = "tag-{$tag->slug}";
+			$hierarchy[] = "tag-{$tag->term_id}";
 		}
 
-		$hierarchy[] = 'tag.php';
+		$hierarchy[] = 'tag';
 
     } elseif ( is_tax() ) {
 
@@ -134,15 +134,15 @@ function get_view_hierarchy() {
 
 		if ( ! empty( $term->slug ) ) {
 			$taxonomy = $term->taxonomy;
-			$hierarchy[] = "tax-$taxonomy-{$term->slug}.php";
-			$hierarchy[] = "tax-$taxonomy.php";
+			$hierarchy[] = "tax-$taxonomy-{$term->slug}";
+			$hierarchy[] = "tax-$taxonomy";
 		}
 
-		$hierarchy[] = 'tax.php';
+		$hierarchy[] = 'tax';
 
     } elseif ( is_date() ) {
 
-		$hierarchy[] = 'date.php';
+		$hierarchy[] = 'date';
 
     } elseif ( is_archive() ) {
 
@@ -152,10 +152,10 @@ function get_view_hierarchy() {
 			$post_type = reset( $post_types );
 			$obj = get_post_type_object( $post_type );
 			if ( $obj->has_archive ) {
-				$hierarchy[] = "archive-{$post_type}.php";
+				$hierarchy[] = "archive-{$post_type}";
 			}
 		}
-		$hierarchy[] = 'archive.php';
+		$hierarchy[] = 'archive';
 
     }
 
@@ -171,6 +171,11 @@ function view() {
     }
 
     $slug = count( $args ) ? array_shift( $args ) : null;
+    $vars = array();
+		
+		if ( count( $args ) && is_array( $args[ count( $args ) - 1 ] ) ) {
+				$vars = array_pop( $args );
+		}
 
     do_action( "get_template_part_{$slug}", $slug, null );
 
@@ -209,13 +214,20 @@ function view() {
 
 		$located = false;
 		foreach ( $hierarchy as $template_name ) {
+
 				if ( file_exists( SRC_DIR . '/views/' . $template_name . '.php' ) ) {
-					$located = SRC_DIR . '/views/' . $template_name . '.php';
-					break;
+						$located = SRC_DIR . '/views/' . $template_name . '.php';
+						break;
+				}
+				
+				if ( file_exists( SRC_DIR . '/views/' . $template_name . '/' . $template_name . '.php' ) ) {
+						$located = SRC_DIR . '/views/' . $template_name . '/' . $template_name . '.php';
+						break;
 				}
 		}
 
 		if ( $located ) {
+				extract( $vars );
 				include $located;
 		}
 }
