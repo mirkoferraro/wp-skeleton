@@ -1,7 +1,7 @@
 var
 root   = '.',
 assets = root + '/public/assets',
-src    = assets + '/src';
+src    = root + '/src';
 
 module.exports = {
     assets: assets,
