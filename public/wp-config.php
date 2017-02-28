@@ -1,11 +1,11 @@
 <?php
 
 $root_dir   = dirname( __DIR__ );
-$public_dir = __DIR__;
 
 define( 'ROOT_DIR', $root_dir );
-define( 'PUBLIC_DIR', $public_dir );
+define( 'PUBLIC_DIR', $root_dir . '/public' );
 define( 'CONFIG_DIR', $root_dir . '/config' );
+define( 'SRC_DIR', $root_dir . '/src' );
 
 
 /*

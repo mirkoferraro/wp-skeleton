@@ -1,0 +1,6 @@
+<?php
+
+add_shortcode('shortcode_name', 'function_name_shortcode');
+function function_name_shortcode($atts, $content = null) {
+    return '<div></div>';
+}

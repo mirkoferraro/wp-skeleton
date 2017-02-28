@@ -1,0 +1,15 @@
+<?php
+
+class TestBulkAction extends BulkAction {
+
+    public function __construct() {
+        parent::__construct( 'mytest', 'MyTest', 'post' );
+    }
+
+    public function do_action( $ids ) {
+        var_dump( $ids );
+    }
+
+}
+
+new TestBulkAction();

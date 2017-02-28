@@ -1,5 +1,3 @@
-<?php check_directly_access(); ?>
-
 <!doctype html>
 <html <?php language_attributes(); ?> class="no-js">
 
