@@ -6,10 +6,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 add_filter( 'theme_page_templates' , 'load_theme_custom_templates' );
 function load_theme_custom_templates( $page_templates ) {
+	
+	$basename = SRC_DIR . '/views/content-template-';
+	$ext      = '.php';
+	$from     = strlen( $basename );
+	$ext_l    = strlen( $ext );
 
-	foreach ( glob( get_template_directory() . '/views/content-template-*.php' ) as $template_path ) {
-		$from          = strlen( get_template_directory() ) + 28;
-		$to            = strlen( $template_path ) - $from - 4;
+	foreach ( glob( $basename . '*' . $ext ) as $template_path ) {
+		$to = strlen( $template_path ) - $from - $ext_l;
 
 		$template_slug = substr( $template_path, $from, $to );
 		$template_name = ucfirst( str_replace( '-', ' ', $template_slug ) );
