@@ -193,6 +193,7 @@ module.exports = function( plugins, paths, local ) {
             'css',
             'svg',
             'img',
+            'sprite',
             'build',
             'favicon',
             'version',

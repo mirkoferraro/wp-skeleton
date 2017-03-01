@@ -23,6 +23,10 @@ module.exports = {
         src:  src + '/img',
         dest: assets + '/img',
     },
+    sprite: {
+        src:  src + '/img/sprite',
+        dest: assets + '/img',
+    },
     favicon: {
         src:  src,
         dest: assets + '/favicons',

@@ -18,7 +18,7 @@ for (var i in config.tasks) {
     gulp.task(taskname, require('./tasks/' + taskname)(gulp, plugins, config, events, paths));
 }
 
-gulp.task('default', ['browserSync', 'img', 'svg', 'css', 'js', 'critical', 'watch'], function() {
+gulp.task('default', ['browserSync', 'img', 'sprite', 'svg', 'css', 'js', 'critical', 'watch'], function() {
     if (typeof local.show_logo === 'undefined' || local.show_logo) {
         console.log("     __          __    _____ _        _      _                  ");
         console.log("     \\ \\        / /   / ____| |      | |    | |                 ");
