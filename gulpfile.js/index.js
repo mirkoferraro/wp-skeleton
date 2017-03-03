@@ -1,21 +1,27 @@
 var
-fs      = require('fs'),
-gulp    = require('gulp'),
-plugins = require('gulp-load-plugins')({pattern: [ 'gulp-*', 'gulp.*', 'browser-sync', 'imagemin-pngquant' ], lazy: false}),
-paths   = require('./paths'),
-local   = {};
+fs       = require('fs'),
+gulp     = require('gulp'),
+plugins  = require('gulp-load-plugins')({pattern: [ 'gulp-*', 'gulp.*', 'browser-sync', 'imagemin-pngquant' ], lazy: false}),
+paths    = require('./paths'),
+filelist = require('./lib/filelist'),
+local    = {};
 
 if (fs.existsSync('config/gulp.js')) {
     local = require('../config/gulp')(plugins, paths);
 }
 
 var
-config  = require('./config')(plugins, paths, local),
-events  = require('./events')(plugins, paths);
+config    = require('./config')(plugins, paths, local),
+events    = require('./events')(plugins, paths),
+taskfiles = filelist("./gulpfile.js/tasks/**/*.js");
 
-for (var i in config.tasks) {
-    var taskname = config.tasks[i];
-    gulp.task(taskname, require('./tasks/' + taskname)(gulp, plugins, config, events, paths));
+for (var i in taskfiles) {
+    var
+    taskfile = taskfiles[i],
+    taskname = taskfile.basename,
+    taskpath = taskfile.path.replace('gulpfile.js/', '');
+
+    gulp.task(taskname, require(taskpath)(gulp, plugins, config, events, paths));
 }
 
 gulp.task('default', ['browserSync', 'img', 'sprite', 'svg', 'css', 'js', 'critical', 'watch'], function() {

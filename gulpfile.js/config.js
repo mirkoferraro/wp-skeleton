@@ -186,20 +186,6 @@ module.exports = function( plugins, paths, local ) {
 			gzipRequests: 20,
 			requests: 30
         },
-        tasks: [
-            'browserSync',
-            'js',
-            'critical',
-            'css',
-            'svg',
-            'img',
-            'sprite',
-            'build',
-            'favicon',
-            'version',
-            'watch',
-            'performance'
-        ],
         watch: {
             css: {
                 files: paths.css.src + '/**/*.scss',
