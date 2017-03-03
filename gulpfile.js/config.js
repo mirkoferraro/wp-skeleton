@@ -1,5 +1,14 @@
-module.exports = function( plugins, paths, local ) {
+var fs = require('fs');
+
+module.exports = function( plugins, paths ) {
+	var local = {};
+
+	if (fs.existsSync('config/gulp.js')) {
+		local = require('../config/gulp')(plugins, paths);
+	}
+
     var data = {
+    	show_logo: local.show_logo,
     	localhost: local.localhost,
         version: {
             clean: [

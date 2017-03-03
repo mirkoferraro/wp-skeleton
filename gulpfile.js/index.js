@@ -1,17 +1,11 @@
 var
-fs       = require('fs'),
-gulp     = require('gulp'),
-plugins  = require('gulp-load-plugins')({pattern: [ 'gulp-*', 'gulp.*', 'browser-sync', 'imagemin-pngquant' ], lazy: false}),
-paths    = require('./paths'),
-filelist = require('./lib/filelist'),
-local    = {};
-
-if (fs.existsSync('config/gulp.js')) {
-    local = require('../config/gulp')(plugins, paths);
-}
-
-var
-config    = require('./config')(plugins, paths, local),
+// Modules
+gulp      = require('gulp'),
+plugins   = require('gulp-load-plugins')({pattern: [ 'gulp-*', 'gulp.*', 'browser-sync', 'imagemin-pngquant' ], lazy: false}),
+filelist  = require('./lib/filelist'),
+// Config & App data
+paths     = require('./paths'),
+config    = require('./config')(plugins, paths),
 events    = require('./events')(plugins, paths),
 taskfiles = filelist("./gulpfile.js/tasks/**/*.js");
 
@@ -25,7 +19,7 @@ for (var i in taskfiles) {
 }
 
 gulp.task('default', ['browserSync', 'img', 'sprite', 'svg', 'css', 'js', 'critical', 'watch'], function() {
-    if (typeof local.show_logo === 'undefined' || local.show_logo) {
+    if (typeof config.show_logo === 'undefined' || config.show_logo) {
         console.log("     __          __    _____ _        _      _                  ");
         console.log("     \\ \\        / /   / ____| |      | |    | |                 ");
         console.log("      \\ \\  /\\  / / __| (___ | | _____| | ___| |_ ___  _ __      ");
