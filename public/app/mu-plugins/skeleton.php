@@ -11,6 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+
 /*------------------------------------*\
     Core
 \*------------------------------------*/
@@ -24,6 +25,7 @@ foreach ( $core_files as $file ) {
     include __DIR__ . '/skeleton/core/' . $file . '.php';
 }
 
+
 /*------------------------------------*\
     Modules
 \*------------------------------------*/
@@ -33,3 +35,9 @@ $modules = array(
 	'settings',
 );
 include_folders( __DIR__ . '/skeleton', $modules );
+
+
+/*------------------------------------*\
+    Src files
+\*------------------------------------*/
+include( SRC_DIR . '/includes/core/load.php' );

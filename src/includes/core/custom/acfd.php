@@ -15,6 +15,3 @@ if ( class_exists( 'ACFD' ) && ACFD::isActive() ) {
 	$repeater = $group->addContainer('repeater', 'Repeater', 'repeater');
 	$repeater->addField('item', 'Item', 'text');
 }
-
-
-die('asd');

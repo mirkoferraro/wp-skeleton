@@ -10,4 +10,8 @@ if ( ! isset( $content_width ) ) {
 
 }
 
-include SRC_DIR . '/includes/load.php';
+
+/*------------------------------------*\
+    Src files
+\*------------------------------------*/
+include( SRC_DIR . '/includes/theme/load.php' );

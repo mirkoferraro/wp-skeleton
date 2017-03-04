@@ -1,6 +1,6 @@
 <?php
 
-include_folders( __DIR__ . '/includes', array(
+include_folders( __DIR__, array(
 	'post-types',
 	'custom-fields',
 	'shortcodes',
