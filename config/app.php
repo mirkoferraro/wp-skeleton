@@ -1,5 +1,6 @@
 <?php
 
+$assets              = assets_url();
 $img              = assets_url( 'img' );
 $js               = assets_url( 'js' );
 $css              = assets_url( 'css' );
@@ -25,7 +26,7 @@ $config = array(
         'main' => array(
             'path' => $js . '/main.min' . $main_js_version . '.js',
             'dep'  => array( 'jquery' )
-        )
+        ),
     ),
     'theme_support' => array(
         'post-thumbnails',

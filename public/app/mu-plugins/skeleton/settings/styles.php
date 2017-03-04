@@ -37,11 +37,15 @@ function wp_enqueue_async_style( $handle, $src = false, $deps = array(), $ver = 
 
 add_action( 'wp_enqueue_scripts', 'load_styles' );
 function load_styles() {
-
-    add_font_face_observer( 'Lato', array( 300, 400, 700 ) );
     
-    $path = assets_url( 'css' );
-    $main_css_version = defined( 'MAIN_CSS_VERSION' ) ? '.' . MAIN_CSS_VERSION : '';
-    wp_enqueue_async_style( 'main', $path . '/main.min' . $main_css_version . '.css' );
+    $fonts = get_config( 'stylesheets', array() );
+    foreach( $fonts as $name => $weights ) {
+        add_font_face_observer( $name, $weights );
+    }
+    
+    $stylesheets = get_config( 'stylesheets', array() );
+    foreach( $stylesheets as $name => $stylesheet ) {
+        wp_enqueue_async_style( $name, $stylesheet['path'] );
+    }
 
 }
