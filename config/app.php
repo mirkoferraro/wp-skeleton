@@ -1,6 +1,6 @@
 <?php
 
-$assets              = assets_url();
+$assets           = assets_url();
 $img              = assets_url( 'img' );
 $js               = assets_url( 'js' );
 $css              = assets_url( 'css' );
