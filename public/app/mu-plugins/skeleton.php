@@ -41,3 +41,7 @@ include_folders( __DIR__ . '/skeleton', $modules );
     Src files
 \*------------------------------------*/
 include( SRC_DIR . '/includes/core/load.php' );
+
+add_action( 'init', function() {
+    include( SRC_DIR . '/includes/init/load.php' );
+});
