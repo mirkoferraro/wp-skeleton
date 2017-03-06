@@ -4,10 +4,12 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-if ( defined( 'GOOGLE_ANALYTICS_ID' ) && ! empty( GOOGLE_ANALYTICS_ID ) ) {
-	add_action( 'wp_head', 'print_google_analytics_code', 0, 1000 );
-}
+add_action( 'wp_head', 'print_google_analytics_code', 0, 1000 );
 function print_google_analytics_code() {
+	$google_analytics_id = get_field( 'google_analytics_id', 'options' );
+	if ( empty( $google_analytics_id ) ) {
+		return;
+	}
 	?>
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -15,7 +17,7 @@ function print_google_analytics_code() {
 	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-	  ga('create', '<?= GOOGLE_ANALYTICS_ID; ?>', 'auto');
+	  ga('create', '<?= $google_analytics_id; ?>', 'auto');
 	  ga('send', 'pageview');
 
 	</script>
@@ -23,23 +25,29 @@ function print_google_analytics_code() {
 }
 
 
-if ( defined( 'GOOGLE_TAG_MANAGER_ID' ) && ! empty( GOOGLE_TAG_MANAGER_ID ) ) {
-	add_action( 'wp_head', 'print_google_tag_manager_script', 0, 1000 );
-	add_action( 'wp_footer', 'print_google_tag_manager_noscript', 0, 1000 );
-}
+add_action( 'wp_head', 'print_google_tag_manager_script', 0, 1000 );
+add_action( 'wp_footer', 'print_google_tag_manager_noscript', 0, 1000 );
 function print_google_tag_manager_script() {
+	$google_tag_manager_id = get_field( 'google_tag_manager_id', 'options' );
+	if ( empty( $google_tag_manager_id ) ) {
+		return;
+	}
 	?>
 	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-	})(window,document,'script','dataLayer','<?= GOOGLE_TAG_MANAGER_ID; ?>');</script>
+	})(window,document,'script','dataLayer','<?= $google_tag_manager_id; ?>');</script>
 	<?php
 }
 
 function print_google_tag_manager_noscript() {
+	$google_tag_manager_id = get_field( 'google_tag_manager_id', 'options' );
+	if ( empty( $google_tag_manager_id ) ) {
+		return;
+	}
 	?>
-	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<?= GOOGLE_TAG_MANAGER_ID; ?>"
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<?= $google_tag_manager_id; ?>"
 	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<?php
 }
