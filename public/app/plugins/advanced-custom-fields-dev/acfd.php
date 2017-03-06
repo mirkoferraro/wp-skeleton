@@ -129,9 +129,6 @@ class ACFD {
 				$group_data['menu_order'] = self::$menu_order++;
 			}
 
-			$locations = array_map( function( $group ) {
-				}, $group_data['location'] );
-
 			if ( self::$customfile ) {
 				$fields_code .= ' acf_add_local_field_group(' . var_export( $group_data, true ) . ');';
 			}
