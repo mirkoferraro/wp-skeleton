@@ -21,15 +21,15 @@ function print_excerpt( $length_callback = '', $more_callback = '' ) {
     }
 
     $output = get_the_excerpt();
-    $output = apply_filters('wptexturize', $output);
-    $output = apply_filters('convert_chars', $output);
+    $output = apply_filters( 'wptexturize', $output );
+    $output = apply_filters( 'convert_chars', $output );
     echo $output;
 
 }
 
 
-add_filter('excerpt_length', 'excerpt_view_article_link');
-add_filter('excerpt_more', 'excerpt_view_article_link');
+add_filter( 'excerpt_length', 'excerpt_view_article_link' );
+add_filter( 'excerpt_more', 'excerpt_view_article_link' );
 function excerpt_view_article_link( $more ) {
 
     global $post;
