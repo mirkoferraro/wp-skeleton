@@ -35,16 +35,16 @@ $config = array(
         'automatic-feed-links'
     ),
     'post_formats' => array(
-        'aside',
-        'gallery',
-        'link',
-        'image',
-        'quote',
-        'status',
-        'video',
-        'audio',
-        'chat',
-        'mycustom'
+        // 'aside',
+        // 'gallery',
+        // 'link',
+        // 'image',
+        // 'quote',
+        // 'status',
+        // 'video',
+        // 'audio',
+        // 'chat',
+        // 'mycustom'
     ),
     'text_domains' => array(
         get_stylesheet() => get_template_directory() . '/languages'
@@ -65,9 +65,9 @@ $config = array(
     ),
     'image_sizes' => array(
         'custom-size' => array(
-            'width' => 600,
+            'width'  => 600,
             'height' => 400,
-            'crop' => false
+            'crop'   => false
         )
     ),
     'private_files' => array(
@@ -81,8 +81,8 @@ $config = array(
         'length' => 20
     ),
     'wp_admin' => array(
-        'show_bar' => false,
+        'show_bar'  => false,
         'heartbeat' => false,
-        'footer' => '<a href="https://github.com/mirkoferraro/wp-skeleton" target="_blank">WpSkeleton</a> created by <a href="http://www.mirkoferraro.it" target="_blank">Mirko Ferraro</a> and powered by <a href="http://www.wordpress.org" target="_blank">WordPress</a>'
+        'footer'    => '<a href="https://github.com/mirkoferraro/wp-skeleton" target="_blank">WpSkeleton</a> created by <a href="http://www.mirkoferraro.it" target="_blank">Mirko Ferraro</a> and powered by <a href="http://www.wordpress.org" target="_blank">WordPress</a>'
     ),
 );
