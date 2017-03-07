@@ -2,7 +2,7 @@
 
 define( 'WPLANG', 'it_IT' );
 define( 'WP_LANG_DIR', PUBLIC_DIR . '/app/languages' );
-define( 'WP_DEFAULT_THEME', 'skeleton' );
+define( 'WP_DEFAULT_THEME', 'base' );
 define( 'WP_POST_REVISIONS', 3 ); // Number of max revisions, false to disable
 define( 'WP_AUTO_UPDATE_CORE', false ); // Disable wp core updates notifications
 define( 'AUTOMATIC_UPDATER_DISABLED', true ); // Disable all wp auto-updates
