@@ -8,9 +8,11 @@ use voku\helper\HtmlMin;
 
 add_filter( 'template_include', 'template_minify_html' );
 function template_minify_html( $template ) {
-    ob_start( 'minify_buffer' );
-    include( $template );
-    ob_end_flush();
+    if ( ! empty( $template ) ) {
+        ob_start( 'minify_buffer' );
+        include( $template );
+        ob_end_flush();
+    }
     return false;
 }
 
