@@ -73,6 +73,11 @@ module.exports = function( plugins, paths ) {
 					loader: 'babel-loader',
 				}],
 			},
+			resolve: {
+				alias: {
+					'vue$': 'vue/dist/vue.min.js'
+				}
+			},
 		},
         performanceBudget: {
 			medianLatency: 2000,
