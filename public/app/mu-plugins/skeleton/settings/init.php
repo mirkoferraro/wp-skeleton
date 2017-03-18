@@ -12,7 +12,7 @@ add_action( 'init', function() {
     // Scripts
     if ( $GLOBALS['pagenow'] != 'wp-login.php' && ! is_admin() ) {
     	wp_deregister_script( 'jquery' );
-    	wp_register_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js', array(), null, true );
+    	wp_register_script( 'jquery', '', array(), null, true );
 
         $scripts = get_config( 'scripts', array() );
         foreach( $scripts as $name => $script ) {
