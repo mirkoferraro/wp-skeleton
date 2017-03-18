@@ -9,14 +9,15 @@ $footer-height: 50px;
 	padding-bottom: $footer-height;
 	&.with-sidebar {
 		display: table;
+		width: 100%;
 
 		.main {
 			display: table-cell;
 			width: 69%;
-			padding-right: 3%;
 		}
 		.sidebar {
 			display: table-cell;
+			padding-left: 3%;
 			width: 31%;
 		}
 	}
