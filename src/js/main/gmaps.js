@@ -6,11 +6,18 @@ queue      = new Queue()
 
 queue.sleep()
 
-window.initMap = function() {
+function initMap() {
 	map_loaded = true
 	queue.awake()
 }
 
-window.onMapLoaded = function( callback ) {
+function onMapLoaded( callback ) {
 	queue.put( callback, map_loaded )
+}
+
+window.initMap = initMap //public callback needed by gmaps script
+
+module.exports = {
+	initMap:     initMap,
+	onMapLoaded: onMapLoaded,
 }

@@ -2,11 +2,11 @@ let
 active = false,
 langs = {}
 
-window.setLocale = function(lang) {
+function setLocale(lang) {
     active = lang
 }
 
-window.addTranslations = function(lang, translations) {
+function addTranslations(lang, translations) {
     if (typeof langs[lang] === 'undefined') {
         langs[lang] = {}
     }
@@ -16,7 +16,7 @@ window.addTranslations = function(lang, translations) {
     }
 }
 
-window._ = function(text, args) {
+function translate(text, args) {
     if (!text) {
         return ''
     }
@@ -27,9 +27,17 @@ window._ = function(text, args) {
         translation = langs[active][text]
     }
 
-    if (typeof args !== 'undefined' && typeof root['sprintf'] === 'function') {
+    if (typeof args !== 'undefined' && typeof window['sprintf'] === 'function') {
         translation = sprintf(translation, args)
     }
 
     return translation
+}
+
+window._ = translate
+
+module.exports = {
+	setLocale:       setLocale,
+	addTranslations: addTranslations,
+	translate:       translate,
 }
