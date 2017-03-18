@@ -72,6 +72,22 @@ Create a php file in the **migrations** folder, name it using a date-time patter
 Launch the migration.php file from the terminal: ```php migration.php```
 
 
+## Queries
+Wrap your delicate queries into transaction functions:
+```
+try {
+    
+    db_transaction_start()
+
+    // your code and queries here
+
+    db_transaction_commit();
+
+} catch ( Exception $e ) {
+    db_transaction_rollback();
+}
+```
+
 ## Gulp tasks
 
 Use ```gulp``` (default task) on your development machine in order to compile all the main tasks (svg, img, js, css and watch).
