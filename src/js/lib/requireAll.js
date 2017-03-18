@@ -1,5 +1,5 @@
 function requireAll(r) {
-    r.keys().forEach(r);
+    r.keys().forEach(r)
 }
 
-module.exports = requireAll;
+module.exports = requireAll

@@ -1,9 +1,9 @@
-var requireAll = require('./lib/requireAll.js');
+var requireAll = require('./lib/requireAll.js')
 
-require('./lib/extend.js');
-require('./main/conditionizr.js');
-require('./main/event-wrapper.js');
-require('./main/gmaps.js');
-require('./vue/vue.js');
+require('./lib/extend.js')
+require('./main/conditionizr.js')
+require('./main/event-wrapper.js')
+require('./main/gmaps.js')
+require('./vue/vue.js')
 
-requireAll(require.context('../views/', true, /\.js$/));
+requireAll(require.context('../views/', true, /\.js$/))

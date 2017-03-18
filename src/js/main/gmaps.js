@@ -1,16 +1,16 @@
-var Semaphore = require('../lib/Semaphore');
+var Queue = require('../lib/queue')
 
 var
 map_loaded = false,
-sem      = new Semaphore();
+queue      = new Queue()
 
-sem.sleep();
+queue.sleep()
 
 window.initMap = function() {
-	map_loaded = true;
-	sem.awake();
-};
+	map_loaded = true
+	queue.awake()
+}
 
 window.onMapLoaded = function( callback ) {
-	sem.put( callback, map_loaded );
-};
+	queue.put( callback, map_loaded )
+}

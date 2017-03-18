@@ -1,33 +1,33 @@
-var throttle = require('./throttle');
+var throttle = require('./throttle')
 
 function Throttler(threshhold, args) {
 	var
-	fnlist = {};
+	fnlist = {}
 
 	var put = function(name, fn) {
 		if (typeof fn === 'function') {
-			fnlist[name] = fn;
+			fnlist[name] = fn
 		}
-	};
+	}
 
 	var remove = function(name) {
 		if (typeof fnlist[name] !== 'undefined') {
-			delete fnlist[name];
+			delete fnlist[name]
 		}
-	};
+	}
 
 	var run = throttle(function() {
-		var _args = typeof args === 'function' ? args() : args;
+		var _args = typeof args === 'function' ? args() : args
 		for (var i in fnlist) {
-			fnlist[i].apply(this, _args);
+			fnlist[i].apply(this, _args)
 		}
-	}, threshhold);
+	}, threshhold)
 
 	return {
 		put: put,
 		remove: remove,
 		run: run,
-	};
+	}
 }
 
-module.exports = Throttler;
+module.exports = Throttler

@@ -1,5 +1,5 @@
-var Throttler = require('../lib/throttle/Throttler');
-var Debouncer = require('../lib/throttle/Debouncer');
+var Throttler = require('../lib/throttle/Throttler')
+var Debouncer = require('../lib/throttle/Debouncer')
 
 var ScrollWrapper = new Throttler(300, function() {
 	var
@@ -8,9 +8,9 @@ var ScrollWrapper = new Throttler(300, function() {
 	width = window.innerWidth || doc.clientWidth || body.clientWidth,
 	height = window.innerHeight|| doc.clientHeight|| body.clientHeight,
 	left = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0),
-	top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
-	return [ top, left, height, width ];
-});
+	top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0)
+	return [ top, left, height, width ]
+})
 
 var ResizeWrapper = new Debouncer(300, function() {
 	var
@@ -18,12 +18,12 @@ var ResizeWrapper = new Debouncer(300, function() {
 	body = document.getElementsByTagName('body')[0],
 	width = window.innerWidth || doc.clientWidth || body.clientWidth,
 	height = window.innerHeight|| doc.clientHeight|| body.clientHeight,
-	is_landscape = width > height;
-	return [ width, height, is_landscape ];
-});
+	is_landscape = width > height
+	return [ width, height, is_landscape ]
+})
 
-window.addEventListener('scroll', ScrollWrapper.run);
-window.addEventListener('resize', ResizeWrapper.run);
+window.addEventListener('scroll', ScrollWrapper.run)
+window.addEventListener('resize', ResizeWrapper.run)
 
-window.ScrollWrapper = ScrollWrapper;
-window.ResizeWrapper = ResizeWrapper;
+window.ScrollWrapper = ScrollWrapper
+window.ResizeWrapper = ResizeWrapper

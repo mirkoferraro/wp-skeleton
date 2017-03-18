@@ -1,33 +1,33 @@
-var debounce = require('./debounce');
+var debounce = require('./debounce')
 
 function Debouncer(delay, args) {
 	var
-	fnlist = {};
+	fnlist = {}
 
 	var put = function(name, fn) {
 		if (typeof fn === 'function') {
-			fnlist[name] = fn;
+			fnlist[name] = fn
 		}
-	};
+	}
 
 	var remove = function(name) {
 		if (typeof fnlist[name] !== 'undefined') {
-			delete fnlist[name];
+			delete fnlist[name]
 		}
-	};
+	}
 
 	var run = debounce(function() {
-		var _args = typeof args === 'function' ? args() : args;
+		var _args = typeof args === 'function' ? args() : args
 		for (var i in fnlist) {
-			fnlist[i].apply(this, _args);
+			fnlist[i].apply(this, _args)
 		}
-	}, delay);
+	}, delay)
 
 	return {
 		put: put,
 		remove: remove,
 		run: run,
-	};
+	}
 }
 
-module.exports = Debouncer;
+module.exports = Debouncer

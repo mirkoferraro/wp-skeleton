@@ -1,24 +1,24 @@
 function throttle(fn, threshhold, scope) {
-	threshhold || (threshhold = 250);
+	threshhold || (threshhold = 250)
 	var
 	last,
-	deferTimer;
+	deferTimer
 	return function() {
 		var
 		context = scope || this,
 		now = +new Date,
-		args = arguments;
+		args = arguments
 		if (last && now < last + threshhold) {
-			clearTimeout(deferTimer);
+			clearTimeout(deferTimer)
 			deferTimer = setTimeout(function() {
-				last = now;
-				fn.apply(context, args);
-			}, threshhold + last - now);
+				last = now
+				fn.apply(context, args)
+			}, threshhold + last - now)
 		} else {
-			last = now;
-			fn.apply(context, args);
+			last = now
+			fn.apply(context, args)
 		}
-	};
+	}
 }
 
-module.exports = throttle;
+module.exports = throttle
