@@ -8,6 +8,7 @@ module.exports = function(gulp, plugins, config, events, paths) {
 		        errorHandler: events.onError
 		    }))
             .pipe(plugins.sourcemaps.init())
+            .pipe(plugins.sassGlob())
             .pipe(plugins.sass({
                     outputStyle: 'nested'
                 })

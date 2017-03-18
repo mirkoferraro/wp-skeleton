@@ -37,6 +37,7 @@
     "gulp-real-favicon": "^0.2.1",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.1.1",
+    "gulp-sass-glob": "^1.0.8",
     "gulp-sequence": "^0.4.4",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-svg-symbols": "^2.0.0",
