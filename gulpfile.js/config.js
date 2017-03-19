@@ -205,11 +205,11 @@ module.exports = function( plugins, paths ) {
         },
         watch: {
             css: {
-                files: paths.css.src + '/**/*.scss',
+                files: [ paths.css.src + '/**/*.scss', paths.src + '/**/*.scss' ],
                 tasks: ['css', 'critical', 'browserSyncStream']
             },
             js: {
-                files: paths.js.src + '/**/*.js',
+                files: [ paths.js.src + '/**/*.js', paths.src + '/**/*.js' ],
                 tasks: ['js', 'browserSyncStream']
             },
             img: {
