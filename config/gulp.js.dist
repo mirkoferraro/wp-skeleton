@@ -1,0 +1,6 @@
+module.exports = function( plugins, paths ) {
+    return {
+    	localhost: 'http://skeleton.dev',
+    	show_logo: true
+    }
+};
