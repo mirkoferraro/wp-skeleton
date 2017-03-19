@@ -14,16 +14,12 @@ function loremipsum( $length = 100, $paragraphs = true, $echo = true ) {
 
     $i = 0;
     while( $length > 0 ) {
-        $text = $available_texts[$i];
+        $text = $available_texts[$i % count($available_texts)];
         $text = substr( $text, 0, $length );
 
         $texts[] = $text;
         $length -= strlen( $text );
         $i++;
-
-        if ( $i >= count( $available_texts ) ) {
-            $i = 0;
-        }
     }
 
     if ( $paragraphs ) {
