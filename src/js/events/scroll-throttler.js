@@ -1,6 +1,6 @@
 var Throttler = require('../lib/throttle/Throttler')
 
-var ScrollWrapper = new Throttler(300, function() {
+var ScrollThrottler = new Throttler(300, function() {
 	var
 	doc = document.documentElement,
 	body = document.getElementsByTagName('body')[0],
@@ -11,6 +11,6 @@ var ScrollWrapper = new Throttler(300, function() {
 	return [ top, left, height, width ]
 })
 
-window.addEventListener('scroll', ScrollWrapper.run)
+window.addEventListener('scroll', ScrollThrottler.run)
 
-module.exports = ScrollWrapper
+module.exports = ScrollThrottler

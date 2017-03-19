@@ -1,6 +1,6 @@
 var Debouncer = require('../lib/throttle/Debouncer')
 
-var ResizeWrapper = new Debouncer(300, function() {
+var ResizeDebouncer = new Debouncer(300, function() {
 	var
 	doc = document.documentElement,
 	body = document.getElementsByTagName('body')[0],
@@ -10,6 +10,6 @@ var ResizeWrapper = new Debouncer(300, function() {
 	return [ width, height, is_landscape ]
 })
 
-window.addEventListener('resize', ResizeWrapper.run)
+window.addEventListener('resize', ResizeDebouncer.run)
 
-module.exports = ResizeWrapper
+module.exports = ResizeDebouncer
