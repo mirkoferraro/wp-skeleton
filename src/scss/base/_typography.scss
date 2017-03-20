@@ -2,29 +2,13 @@
 
 html {
     font-size: 62.5%;
-
-    @include media-min('xs') {
-        font-size: 62.5%;
-    }
-
-    @include media-min('sm') {
-        font-size: 62.5%;
-    }
-
-    @include media-min('md') {
-        font-size: 62.5%;
-    }
-
-    @include media-min('lg') {
-        font-size: 62.5%;
-    }
 }
 
 body {
     color: $text-color;
     font-family: $sans-font;
     font-size: $text-size;
-    font-weight: 400;
+    font-weight: $text-weight;
     line-height: $text-line;
 }
 
