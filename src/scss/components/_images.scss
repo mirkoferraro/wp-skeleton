@@ -4,12 +4,9 @@ img {
     outline: 0;
 }
 
-img.img--oval {
+img.img--rounded {
     border: 1px solid $grey-light;
     border-radius: 50%;
     max-height: 10rem;
     max-width: 10rem;
-    &.img---outline {
-        padding: .3rem;
-    }
 }
