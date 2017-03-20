@@ -55,7 +55,10 @@ $config = array(
     'stylesheets' => array(
         'main' => array(
             'path' => $css . '/main.min' . $main_css_version . '.css'
-        )
+        ),
+        'woocommerce-layout'      => false,
+        'woocommerce-smallscreen' => false,
+        'woocommerce-general'     => false,
     ),
     'scripts' => array(
         'main' => array(

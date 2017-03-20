@@ -35,7 +35,7 @@ function wp_enqueue_async_style( $handle, $src = false, $deps = array(), $ver = 
     $async_styles[] = $src;
 }
 
-add_action( 'wp_enqueue_scripts', 'load_styles' );
+add_action( 'wp_enqueue_scripts', 'load_styles', 1000 );
 function load_styles() {
     
     $fonts = get_config( 'stylesheets', array() );
@@ -45,7 +45,11 @@ function load_styles() {
     
     $stylesheets = get_config( 'stylesheets', array() );
     foreach( $stylesheets as $name => $stylesheet ) {
-        wp_enqueue_async_style( $name, $stylesheet['path'] );
+        if ( false ===  $stylesheet ) {
+            wp_dequeue_style( $name );
+        } else {
+            wp_enqueue_async_style( $name, $stylesheet['path'] );
+        }
     }
 
 }
