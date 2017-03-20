@@ -236,7 +236,7 @@ module.exports = function( plugins, paths ) {
 			}
 		};
 
-		local.critical = {
+		data.critical = {
 			base_url: local.localhost,
 			main_css: local.localhost + paths.css.dest.substr(8) + '/main.min.css',
 		};
