@@ -16,7 +16,11 @@ add_action( 'init', function() {
 
         $scripts = get_config( 'scripts', array() );
         foreach( $scripts as $name => $script ) {
-            wp_enqueue_script( $name, $script['path'], $script['dep'], null, true );
+            if ( false === $script ) {
+                wp_dequeue_script( $name );
+            } else {
+                wp_enqueue_script( $name, $script['path'], $script['dep'], null, true );
+            }
         }
     }
 
@@ -27,5 +31,4 @@ add_action( 'init', function() {
         register_private_file( $private['url'], $private['path'], $private['cap'] );
     }
     
-} );
-
+}, 1000 );
