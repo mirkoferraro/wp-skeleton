@@ -221,7 +221,7 @@ module.exports = function( plugins, paths ) {
                 tasks: ['svg']
             },
             php: {
-                files: paths.theme + '/**/*.php',
+                files: paths.src + '/**/*.php',
                 tasks: ['browserSyncReload']
             }
         }
