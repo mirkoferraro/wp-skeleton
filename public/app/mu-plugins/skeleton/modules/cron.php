@@ -15,7 +15,7 @@ class CronManager {
     private static $queue         = array();
     private static $current_queue = null;
 
-    public static function init() {
+    static function init() {
         if ( self::$init ) {
             return;
         }
@@ -32,7 +32,7 @@ class CronManager {
         $init = true;
     }
 
-    public static function adminPage() {
+    static function adminPage() {
         $crons         = self::getCrons();
         $queue         = self::getQueue();
         $current_cron  = self::getCurrentCron();
@@ -81,7 +81,7 @@ class CronManager {
         <?php
     }
     
-    public static function adminNotice() {
+    static function adminNotice() {
         $current_cron  = self::getCurrentCron();
         $current_queue = self::getCurrentQueue();
         $message = false;
@@ -100,7 +100,7 @@ class CronManager {
         printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $message ) ); 
     }
 
-    public static function register( $name, $recurrence, $function ) {
+    static function register( $name, $recurrence, $function ) {
         add_action( self::_cronName( $name ), $function );
         self::$functions[$name] = $function;
 
@@ -113,7 +113,7 @@ class CronManager {
         }
     }
 
-    public static function unregister( $name ) {
+    static function unregister( $name ) {
         if ( ! isset( self::$crons[$name] ) || ! isset( self::$functions[$name] ) ) {
             return;
         }
@@ -123,7 +123,7 @@ class CronManager {
         self::_saveCrons();
     }
 
-    public static function put( $name, $function_name, $arguments = array() ) {
+    static function put( $name, $function_name, $arguments = array() ) {
         $already_exist = count( array_filter( self::$queue, function( $item ) use ( $name ) {
             return $item['name'] == $name;
         } ) );
@@ -141,15 +141,15 @@ class CronManager {
         return true;
     }
 
-    public static function getCrons() {
+    static function getCrons() {
         return self::$crons;
     }
 
-    public static function getQueue() {
+    static function getQueue() {
         return self::$queue;
     }
 
-    public static function getCurrentCron() {
+    static function getCurrentCron() {
         if ( null == self::$current_cron ) {
             self::$current_cron = get_option( 'current_cron' );
         }
@@ -157,7 +157,7 @@ class CronManager {
         return self::$current_cron;
     }
 
-    public static function getCurrentQueue() {
+    static function getCurrentQueue() {
         if ( null == self::$current_queue ) {
             self::$current_queue = get_option( 'current_queue' );
         }
@@ -261,7 +261,7 @@ class CronManager {
         self::_saveQueue();
     }
 
-    public static function run() {
+    static function run() {
         // Cron
         $crons = self::_getNextCronList();
 
