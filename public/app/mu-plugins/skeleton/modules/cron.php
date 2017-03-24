@@ -233,9 +233,14 @@ class CronManager {
         }
 
         $item = array_shift( self::$queue );
-        self::_currentQueue( $item['name'] );
-        call_user_func_array( $item['func'], (array) $item['args'] );
-        self::_currentQueue();
+
+        if ( function_exists( $item['func'] ) ) {
+            self::_currentQueue( $item['name'] );
+            call_user_func_array( $item['func'], (array) $item['args'] );
+            self::_currentQueue();
+        }
+
+        self::_saveQueue();
     }
 
     public static function run() {
