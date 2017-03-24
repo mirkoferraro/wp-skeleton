@@ -46,6 +46,7 @@
     "roots/wp-password-bcrypt": "1.0.0",
     "mtdowling/cron-expression": "^1.2",
     "nesbot/carbon": "^1.22",
+    "ps/image-optimizer": "^1.0",
     "voku/html-min": "^1.0"
   },
   "extra": {

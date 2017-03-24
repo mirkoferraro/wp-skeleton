@@ -11,12 +11,17 @@ define( 'SRC_DIR', $root_dir . '/src' );
 /*
  * Configuration files
  */
-$config_wp = 'wp.php';
-$config_db = 'db.php';
-$config_keys = 'keys.php';
+$config_wp    = 'wp.php';
+$config_local = 'local.php';
+$config_db    = 'db.php';
+$config_keys  = 'keys.php';
 
 if ( ! file_exists( CONFIG_DIR . '/' . $config_wp ) ) {
     die( 'Missing wp config file: create the <i>' . $config_wp . '</i> file' );
+}
+
+if ( ! file_exists( CONFIG_DIR . '/' . $config_local ) ) {
+    die( 'Missing local config file: create the <i>' . $config_local . '</i> file' );
 }
 
 if ( ! file_exists( CONFIG_DIR . '/' . $config_db ) ) {
@@ -40,6 +45,7 @@ if ( ! file_exists( CONFIG_DIR . '/' . $config_keys ) ) {
 }
 
 require_once( CONFIG_DIR . '/' . $config_wp );
+require_once( CONFIG_DIR . '/' . $config_local );
 require_once( CONFIG_DIR . '/' . $config_db );
 include_once( CONFIG_DIR . '/' . $config_keys ); // Generate keys here: https://api.wordpress.org/secret-key/1.1/salt/
 

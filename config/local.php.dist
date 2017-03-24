@@ -1,0 +1,9 @@
+<?php
+
+/* Image optimizer */
+define( 'BIN_JPEGTRAN', '/usr/local/bin/jpegtran' );
+define( 'BIN_OPTIPNG', '/usr/local/bin/optipng' );
+define( 'BIN_PNGQUANT', '/usr/local/bin/pngquant' );
+define( 'BIN_PNGCRUSH', '/usr/local/bin/pngcrush' );
+define( 'BIN_GIFSICLE', '/usr/local/bin/gifsicle' );
+define( 'BIN_JPEGOPTIM', '/usr/local/bin/jpegoptim' );

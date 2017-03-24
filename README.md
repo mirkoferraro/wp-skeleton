@@ -55,8 +55,22 @@ define('NONCE_SALT', '');
 Skeleton try to generate it on first page loading, otherwise you can create your own file from [https://api.wordpress.org/secret-key/1.1/salt](https://api.wordpress.org/secret-key/1.1/salt/).
 
 
+## Configurations
+All the configuration files are located in the *config* directory.
+
+There are two kind of configuration files: globals and locals.
+The first one should be updated on the repository. The locals should be configured for each machine and are generally followed by *.dist* extension.
+
+* The *app.php* file contains several useful options for a furst customization of your site.
+* The *db.php* are a local file that contains the database settings
+* The *gulp.js* are a local file for development mode
+* The *keys.php* contains the WP' keys, but is auto-generated so you can ignore it
+* The *local.php* are a local file that contains settings related to the local machine
+* The *wp.php* file contains the common WP's constants
+
+
 ## Database
-Copy the *local-config.php.dist* to *local-config.php* and change the settings inside it.
+Copy the *config/db.php.dist* to *config/db.php* and change the settings inside it.
 
 Then you can use the WP-CLI to import the default database dump
 ```
@@ -87,6 +101,18 @@ try {
     db_transaction_rollback();
 }
 ```
+
+
+## Images optimizations
+Skeleton use an optimization process for the images uploaded in the media library.
+
+In order to activate the image optimization process you should activate the CronManager and change the configuration in the *local.php* configuration file with the following bin path:
+* jpegtran
+* optipng
+* pngquant
+* pngcrush
+* gifsicle
+* jpegoptim
 
 ## Gulp tasks
 

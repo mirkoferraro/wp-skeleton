@@ -2,6 +2,7 @@
 assets_versions.php
 config/db.php
 config/gulp.js
+config/local.php
 config/keys.php
 local-config.php
 ignore
