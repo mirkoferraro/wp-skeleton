@@ -27,6 +27,8 @@ class CronManager {
             add_menu_page( 'Cron Manager', 'Cron Manager', 'manage_options', 'cron', 'CronManager::adminPage', 'dashicons-controls-repeat', 1001 );
         });
 
+        add_action( 'admin_notices', array( __CLASS__, 'adminNotice' ) );
+
         $init = true;
     }
 
@@ -40,14 +42,11 @@ class CronManager {
         <?php if ( $current_queue ) : ?>
             <p>Name: <?= $current_queue['name'] ?></p>
             <p>Started at: <?= date( '', $current_queue['started_at'] ) ?></p>
-        <?php else: ?>
-            <p>No running from queue</p>
-        <?php endif ?>
-        <?php if ( $current_cron ) : ?>
+        <?php elseif ( $current_cron ) : ?>
             <p>Name: <?= $current_cron['name'] ?></p>
             <p>Started at: <?= date( '', $current_cron['started_at'] ) ?></p>
         <?php else: ?>
-            <p>No running crons</p>
+            <p>No running crons or functions</p>
         <?php endif ?>
 
         <h2>Queue List</h2>
@@ -80,6 +79,25 @@ class CronManager {
             </tbody>
         </table>
         <?php
+    }
+    
+    public static function adminNotice() {
+        $current_cron  = self::getCurrentCron();
+        $current_queue = self::getCurrentQueue();
+        $message = false;
+
+        if ( $current_queue ) {
+            $message = 'The function ' . $current_queue['name'] . ' are running';
+        } elseif ( $current_cron ) {
+            $message = 'The cron job ' . $current_cron['name'] . ' are running';
+        }
+
+        if ( ! $message ) {
+            return;
+        }
+
+        $class = 'notice notice-info is-dismissible';
+        printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $message ) ); 
     }
 
     public static function register( $name, $recurrence, $function ) {
