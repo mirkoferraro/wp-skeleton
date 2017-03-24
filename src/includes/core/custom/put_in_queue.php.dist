@@ -1,0 +1,6 @@
+<?php
+
+CronManager::put( 'example', 'cron_example_function', array( 'arg1', 'arg2' ) );
+function queue_example_function( $arg1, $arg2 ) {
+    // do something
+}

@@ -178,3 +178,18 @@ This will run the CronManager every 5 minutes.
 
 Now you can create your own cron task in ```public/app/mu-plugins/skeleton/crons``` folder.
 See the ```cron_example.php.dist```
+
+```
+CronManager::register( 'example', '* * * * *', 'cron_example_function' );
+function cron_example_function() {
+    // do something
+}
+```
+
+The CronManager also manage a queue of function calls, you can simply put a function in the queue and wait for the execution:
+```
+CronManager::put( 'example', 'cron_example_function', array( 'arg1', 'arg2' ) );
+function queue_example_function( $arg1, $arg2 ) {
+    // do something
+}
+```
