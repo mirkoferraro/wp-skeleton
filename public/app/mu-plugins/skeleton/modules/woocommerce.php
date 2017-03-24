@@ -19,3 +19,17 @@ function remove_woocommerce_template_include() {
 	remove_filter( 'template_include', 'WC_Template_Loader::template_loader' );
 	remove_filter( 'comments_template', 'WC_Template_Loader::comments_template_loader' );
 }
+
+add_filter( 'woocommerce_login_redirect', 'warning_on_missing_wc_login_redirect', 10, 2 );
+function warning_on_missing_wc_login_redirect( $redirect, $user ) {
+    if ( ! empty( $redirect ) ) {
+        return $redirect;
+    }
+
+    if ( in_array( 'administrator', $user->roles ) ) {
+        echo 'Warning: missing WC Account page';
+        exit;
+    }
+
+    return home_url();
+}
