@@ -67,18 +67,18 @@ $config = array(
         ),
     ),
     'image_sizes' => array(
-        'custom-size' => array(
-            'width'  => 600,
-            'height' => 400,
-            'crop'   => false
-        )
+        // 'custom-size' => array(
+        //     'width'  => 600,
+        //     'height' => 400,
+        //     'crop'   => false
+        // )
     ),
     'private_files' => array(
-        array(
-            'url'  => '',
-            'path' => '',
-            'cap'  => ''
-        )
+        // array(
+        //     'url'  => '',
+        //     'path' => '',
+        //     'cap'  => ''
+        // )
     ),
     'excerpt' => array(
         'length' => 20
