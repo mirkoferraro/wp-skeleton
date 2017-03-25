@@ -10,7 +10,13 @@ module.exports = function(gulp, plugins, config, events, paths) {
             .pipe(plugins.sourcemaps.init())
             .pipe(plugins.sassGlob())
             .pipe(plugins.sass({
-                    outputStyle: 'nested'
+                    outputStyle: 'nested',
+                    includePaths: [
+                        'node_modules/swiper/dist/css/',
+                        'node_modules/foundation-sites/scss/',
+                        'node_modules/motion-ui/src/',
+                        'node_modules/normalize.css/'
+                    ]
                 })
                 .on('error', plugins.sass.logError))
 			.pipe(plugins.combineMq({

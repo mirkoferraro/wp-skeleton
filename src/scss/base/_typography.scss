@@ -1,117 +1,15 @@
-@include fontface('Lato', 'lato-regular-webfont', bold);
+/* Fonts */
+$sans-font: 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+$lato-font: 'Lato', $sans-font;
 
-html {
-    font-size: 62.5%;
-}
+@include fontface( 'Lato', 'lato-regular-webfont', 400, normal );
 
 body {
-    color: $text-color;
     font-family: $sans-font;
-    font-size: $text-size;
-    font-weight: $text-weight;
-    line-height: $text-line;
-}
-
-p {
-    margin-bottom: $text-gutter;
-}
-
-h1 {
-    color: $h1-color;
-    font-size: $h1-size;
-    font-weight: $h1-weight;
-    line-height: $h1-line;
-    margin-bottom: $h1-gutter;
-    margin-top: $h1-gutter;
-}
-
-h2 {
-    color: $h2-color;
-    font-size: $h2-size;
-    font-weight: $h2-weight;
-    line-height: $h2-line;
-    margin-bottom: $h2-gutter;
-    margin-top: $h2-gutter;
-}
-
-h3 {
-    color: $h3-color;
-    font-size: $h3-size;
-    font-weight: $h3-weight;
-    line-height: $h3-line;
-    margin-bottom: $h3-gutter;
-    margin-top: $h3-gutter;
-}
-
-h4 {
-    color: $h4-color;
-    font-size: $h4-size;
-    font-weight: $h4-weight;
-    line-height: $h4-line;
-    margin-bottom: $h4-gutter;
-    margin-top: $h4-gutter;
-}
-
-h5 {
-    color: $h5-color;
-    font-size: $h5-size;
-    font-weight: $h5-weight;
-    line-height: $h5-line;
-    margin-bottom: $h5-gutter;
-    margin-top: $h5-gutter;
-}
-
-h6 {
-    color: $h6-color;
-    font-size: $h6-size;
-    font-weight: $h6-weight;
-    line-height: $h6-line;
-    margin-bottom: $h6-gutter;
-    margin-top: $h6-gutter;
 }
 
 .fonts-loaded {
     body {
-        font-family: $text-font;
+        font-family: $lato-font;
     }
-
-    h1 {
-        font-family: $h1-font;
-    }
-
-    h2 {
-        font-family: $h2-font;
-    }
-
-    h3 {
-        font-family: $h3-font;
-    }
-
-    h4 {
-        font-family: $h4-font;
-    }
-
-    h5 {
-        font-family: $h5-font;
-    }
-
-    h6 {
-        font-family: $h6-font;
-    }
-}
-
-::selection {
-	background: #04A4CC;
-	color: #fff;
-	text-shadow: none;
-}
-::-webkit-selection {
-	background: #04A4CC;
-	color: #fff;
-	text-shadow: none;
-}
-::-moz-selection {
-	background: #04A4CC;
-	color: #fff;
-	text-shadow: none;
 }

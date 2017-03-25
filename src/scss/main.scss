@@ -1,48 +1,21 @@
 @charset 'UTF-8';
 
-@import
-
 // Vendors
-'../../node_modules/breakpoint-sass/stylesheets/breakpoint',
-'../../node_modules/normalize-scss/sass/normalize',
-'../../node_modules/susy/sass/susy',
-'../../node_modules/swiper/dist/css/swiper',
-
-// Variables
-'base/variables',
+@import 'foundation/settings';
+@import 'normalize';
+@import 'foundation';
+@import 'motion-ui';
+@import 'foundation/components';
+@import 'swiper';
 
 // Mixins
-'mixins/clearfix',
-'mixins/event',
-'mixins/fontface',
-'mixins/gutter',
-'mixins/list',
-'mixins/media',
-'mixins/placeholder',
+@import 'mixins/fontface';
+@import 'mixins/placeholder';
 
-// Base stuff
-'base/base',
-'base/typography',
-'base/wpcore',
-'base/layout',
-'base/print',
+// Base stuffs
+@import 'base/base';
+@import 'base/typography';
+@import 'base/wpcore';
 
-// Layout-related sections
-'layout/header',
-'layout/menu',
-'layout/footer',
-
-// Utils
-'utils/square',
-
-// Components
-'components/buttons',
-'components/forms',
-'components/images',
-'components/pagination',
-
-// Page-specific styles
-'pages/home',
-'pages/wplogin';
-
+// Components in views directory
 @import '../views/**/*.scss';
