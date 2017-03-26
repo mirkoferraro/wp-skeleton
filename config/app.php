@@ -32,7 +32,8 @@ $config = array(
     ),
     'theme_support' => array(
         'post-thumbnails',
-        'automatic-feed-links'
+        'automatic-feed-links',
+        'menus'
     ),
     'post_formats' => array(
         // 'aside',

@@ -1,6 +1,9 @@
 // Define public jQuery
 window.$ = window.jQuery = require('jquery')
 
+// Foundation
+require('./main/foundation')
+
 // Extends Javascript properties
 require('./lib/extend.js')
 
@@ -45,6 +48,9 @@ gmaps.onMapLoaded(function(){
 var locale = require('./lib/locale')
 locale.setLocale('en')
 locale.addTranslations('it', { "hello world": "ciao mondo" })   
+
+// No-js
+require('./lib/no-js')
 
 // Require all *.js files in views folder
 require('./lib/requireAll.js')(require.context('../views/', true, /\.js$/))
