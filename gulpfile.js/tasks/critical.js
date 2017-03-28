@@ -19,8 +19,8 @@ module.exports = function (gulp, plugins, config, events, paths) {
 					if (err) {
 						throw new Error(err);
 					}
-
-					criticalcss.findCritical(config.critical.base_url, { rules: JSON.parse(output) }, function(err, output) {
+					
+					criticalcss.findCritical(config.critical.base_url, { rules: JSON.parse(output), ignoreConsole: true }, function(err, output) {
 						if (err) {
 							throw new Error(err);
 						}
