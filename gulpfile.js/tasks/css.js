@@ -27,12 +27,12 @@ module.exports = function(gulp, plugins, config, events, paths) {
                 cascade: false
             }))
             .pipe(plugins.cleanCss())
+            .pipe(plugins.rename(function(path) {
+                path.basename += ".min";
+            }))
             .pipe(plugins.sourcemaps.write('maps', {
                 includeContent: false,
                 sourceRoot: paths.css.src
-            }))
-            .pipe(plugins.rename(function(path) {
-                path.basename += ".min";
             }))
             .pipe(gulp.dest(paths.css.dest))
             .pipe(plugins.browserSync.stream());
