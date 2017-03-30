@@ -7,6 +7,9 @@ require('./main/foundation')
 // Extends Javascript properties
 require('./lib/extend.js')
 
+// Conditionizr
+require('./main/conditionizr')
+
 // Debouncer for viewport resize event
 var ResizeDebouncer = require('./events/resize-debouncer')
 ResizeDebouncer.put('test', function(width, height, is_landscape) {
