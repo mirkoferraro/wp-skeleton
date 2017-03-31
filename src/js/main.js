@@ -5,7 +5,7 @@ window.$ = window.jQuery = require('jquery')
 require('./main/foundation')
 
 // Extends Javascript properties
-require('./lib/extend.js')
+require('js.extend')
 
 // Conditionizr
 require('./main/conditionizr')
