@@ -47,8 +47,10 @@ function load_styles() {
     foreach( $stylesheets as $name => $stylesheet ) {
         if ( false ===  $stylesheet ) {
             wp_dequeue_style( $name );
-        } else {
+        } elseif ( isset( $stylesheet['async'] ) && $stylesheet['async'] ) {
             wp_enqueue_async_style( $name, $stylesheet['path'] );
+        }else {
+            wp_enqueue_style( $name, $stylesheet['path'] );
         }
     }
 

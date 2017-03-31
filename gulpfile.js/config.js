@@ -206,7 +206,7 @@ module.exports = function( plugins, paths ) {
         watch: {
             css: {
                 files: [ paths.css.src + '/**/*.scss', paths.src + '/**/*.scss' ],
-                tasks: ['css', 'critical', 'browserSyncStream']
+                tasks: ['css', 'browserSyncStream']
             },
             js: {
                 files: [ paths.js.src + '/**/*.js', paths.src + '/**/*.js' ],
@@ -227,18 +227,13 @@ module.exports = function( plugins, paths ) {
         }
     };
 
-	if (typeof local.localhost !== 'undefined') {
+	if (typeof data.localhost !== 'undefined') {
 		data.browserSync = {
-			proxy: local.localhost,
+			proxy: data.localhost,
 			open: false,
 			socket: {
 				domain: 'localhost:3000'
 			}
-		};
-
-		data.critical = {
-			base_url: local.localhost,
-			main_css: local.localhost + paths.css.dest.substr(8) + '/main.min.css',
 		};
 	}
 
