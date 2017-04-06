@@ -6,7 +6,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 add_action( 'wp_head', 'print_google_analytics_code', 0, 1000 );
 function print_google_analytics_code() {
+	if ( ! function_exists( 'get_field' ) ) {
+		return;
+	}
+
 	$google_analytics_id = get_field( 'google_analytics_id', 'options' );
+
 	if ( empty( $google_analytics_id ) ) {
 		return;
 	}
@@ -28,7 +33,12 @@ function print_google_analytics_code() {
 add_action( 'wp_head', 'print_google_tag_manager_script', 0, 1000 );
 add_action( 'wp_footer', 'print_google_tag_manager_noscript', 0, 1000 );
 function print_google_tag_manager_script() {
+	if ( ! function_exists( 'get_field' ) ) {
+		return;
+	}
+
 	$google_tag_manager_id = get_field( 'google_tag_manager_id', 'options' );
+
 	if ( empty( $google_tag_manager_id ) ) {
 		return;
 	}
@@ -42,7 +52,12 @@ function print_google_tag_manager_script() {
 }
 
 function print_google_tag_manager_noscript() {
+	if ( ! function_exists( 'get_field' ) ) {
+		return;
+	}
+
 	$google_tag_manager_id = get_field( 'google_tag_manager_id', 'options' );
+	
 	if ( empty( $google_tag_manager_id ) ) {
 		return;
 	}
