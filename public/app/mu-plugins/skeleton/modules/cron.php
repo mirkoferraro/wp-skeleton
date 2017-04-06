@@ -23,7 +23,7 @@ class CronManager {
         self::_loadCrons();
         self::_loadQueue();
 
-        add_action( 'init', function() {
+        add_action( 'admin_menu', function() {
             add_menu_page( 'Cron Manager', 'Cron Manager', 'manage_options', 'cron', 'CronManager::adminPage', 'dashicons-controls-repeat', 1001 );
         });
 
