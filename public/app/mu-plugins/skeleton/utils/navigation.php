@@ -12,11 +12,16 @@ function nav_menu( $position, $args = array() ) {
 }
 
 function foundation_nav_menu( $position, $args = array() ) {
-    return nav_menu( $position, array(
-        'menu_class' => 'menu dropdown',
-        'items_wrap' => '<ul id="%1$s" class="%2$s" data-dropdown-menu>%3$s</ul>',
-        'walker'     => new Foundation_Walker_Nav_Menu(),
-    ) );
+
+	$locations = get_nav_menu_locations();
+
+	if ( isset( $locations[ $position ] ) ) {
+		$args['menu_class'] = 'menu dropdown';
+		$args['items_wrap'] = '<ul id="%1$s" class="%2$s" data-dropdown-menu>%3$s</ul>';
+		$args['walker'] = new Foundation_Walker_Nav_Menu();
+	}
+
+    return nav_menu( $position, $args );
 }
 
 class Foundation_Walker_Nav_Menu extends Walker_Nav_Menu {
