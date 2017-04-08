@@ -1,10 +1,9 @@
 <?php
 
-echo "Migration start\n";
-
 define( 'WP_USE_THEMES', false );
+require_once( __DIR__ . '/../public/core/wp-load.php' );
 
-require_once( __DIR__ . '/public/core/wp-load.php' );
+echo "Migration start\n";
 
 $migrations = get_option( 'migrations' );
 is_array( $migrations ) || ( $migrations = array() );
