@@ -1,13 +1,9 @@
 var
 // Modules
-gulp      = require('gulp'),
-plugins   = require('gulp-load-plugins')({pattern: [ 'gulp-*', 'gulp.*', 'browser-sync', 'imagemin-pngquant' ], lazy: false}),
+config    = require('./config'),
+$         = require('gulp-load-plugins')({pattern: config.load_plugins, lazy: false}),
 filelist  = require('./lib/filelist'),
-// Config & App data
-paths     = require('./paths'),
-config    = require('./config')(plugins, paths),
-events    = require('./events')(plugins, paths),
-taskfiles = filelist("./gulpfile.js/tasks/**/*.js");
+taskfiles = filelist("./gulpfile.js/tasks/**/*.js")
 
 for (var i in taskfiles) {
     var
@@ -15,10 +11,10 @@ for (var i in taskfiles) {
     taskname = taskfile.basename,
     taskpath = taskfile.path.replace('gulpfile.js/', '');
 
-    gulp.task(taskname, require(taskpath)(gulp, plugins, config, events, paths));
+    $.gulp.task(taskname, require(taskpath)($, config));
 }
 
-gulp.task('default', ['browserSync', 'img', 'sprite', 'svg', 'css', 'js', 'watch'], function() {
+$.gulp.task('default', ['images', 'sprite', 'svg', 'styles', 'scripts', 'watch'], function() {
     if (typeof config.show_logo === 'undefined' || config.show_logo) {
         console.log("     __          __    _____ _        _      _                  ");
         console.log("     \\ \\        / /   / ____| |      | |    | |                 ");

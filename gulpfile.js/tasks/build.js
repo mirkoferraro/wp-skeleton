@@ -1,5 +1,5 @@
-module.exports = function (gulp, plugins, config, events, paths) {
+module.exports = function ($, config) {
     return function (cb) {
-    	plugins.sequence('img', 'sprite', 'svg', 'favicon', 'css', 'js', 'version', cb);
+    	$.sequence('images', 'sprite', 'svg', 'favicon', 'styles', 'scripts', 'version', cb);
     };
 };

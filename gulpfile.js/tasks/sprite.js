@@ -1,33 +1,35 @@
 var merge = require('merge-stream');
 
-module.exports = function (gulp, plugins, config, events, paths) {
+module.exports = function ($, config) {
     return function () {
-        var spriteData = gulp.src(paths.sprite.src + '/*.png')
-            .pipe(plugins.plumber({
-                errorHandler: events.onError
+        var spriteData = $.gulp.src(config.paths.sprite.src + '/*.png')
+            .pipe($.plumber({
+                errorHandler: function(err) {
+                    $.util.log($.util.colors.red(err))
+                }
             }))
-            .pipe(plugins.spritesmith({
+            .pipe($.spritesmith({
                 imgName: 'sprite.png',
                 cssName: 'sprite.css'
             }));
 
         var imgData = spriteData.img
-                // .pipe(plugins.imagemin({
+                // .pipe($.imagemin({
                 //     optimizationLevel: 3,
                 //     progressive: true,
                 //     interlaced: true,
-                //     svgoPlugins: [{removeViewBox: false}],
-                //     use: [plugins.imageminPngquant({quality: '65-80', speed: 4})]
+                //     svgo$: [{removeViewBox: false}],
+                //     use: [$.imageminPngquant({quality: '65-80', speed: 4})]
                 // }))
-                .pipe(gulp.dest(paths.sprite.dest));
+                .pipe($.gulp.dest(config.paths.sprite.dest));
             
 
         var cssData = spriteData.css
-                .pipe(plugins.cleanCss())
-                .pipe(plugins.rename(function(path) {
+                .pipe($.cleanCss())
+                .pipe($.rename(function(path) {
                     path.basename += ".min";
                 }))
-                .pipe(gulp.dest(paths.css.dest));
+                .pipe($.gulp.dest(config.paths.styles.dest));
         
         return merge(imgData, cssData);
     };

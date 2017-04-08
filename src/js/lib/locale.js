@@ -1,4 +1,4 @@
-let
+var
 active = false,
 langs = {}
 
@@ -21,7 +21,7 @@ function translate(text, args) {
         return ''
     }
 
-    let translation = text
+    var translation = text
 
     if (active && typeof langs[active] !== 'undefined' && typeof langs[active][text] !== 'undefined') {
         translation = langs[active][text]

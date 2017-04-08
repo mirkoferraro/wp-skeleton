@@ -17,14 +17,14 @@ function version( length ) {
     return ver;
 }
 
-module.exports = function (gulp, plugins, config, events, paths) {
+module.exports = function ($, config) {
     return function () {
     	var
 		tasks      = [],
 		phpcontent = '<?php\n';
 
-		tasks.push(gulp.src(config.version.clean)
-            .pipe(plugins.clean()));
+		tasks.push($.gulp.src(config.version.clean)
+            .pipe($.clean()));
 
     	for ( var varname in config.version.src ) {
     		var
@@ -34,9 +34,9 @@ module.exports = function (gulp, plugins, config, events, paths) {
 			filename = src.substr(0, sep),
 			ext      = src.substr(sep);
 
-    		tasks.push(gulp.src(src)
-	            .pipe(plugins.rename(filename + '.' + ver + ext))
-	            .pipe(gulp.dest('.')));
+    		tasks.push($.gulp.src(src)
+	            .pipe($.rename(filename + '.' + ver + ext))
+	            .pipe($.gulp.dest('.')));
 
     		phpcontent += 'define("' + varname + '_VERSION", "' + ver + '");\n';
         }

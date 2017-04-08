@@ -56,4 +56,4 @@ locale.addTranslations('it', { "hello world": "ciao mondo" })
 require('./lib/no-js')
 
 // Require all *.js files in views folder
-require('./lib/requireAll.js')(require.context('../views/', true, /\.js$/))
+var view_modules = require('../views/**/*.js', {mode: 'hash', resolve: ['path-reduce', 'strip-ext']})

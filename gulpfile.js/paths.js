@@ -1,26 +1,24 @@
 var
-root   = '.',
-assets = root + '/public/assets',
-src    = root + '/src';
+assets = './public/assets',
+src    = './src'
 
 module.exports = {
     assets: assets,
     src:    src,
-    theme:  root + '/public/app/themes/skeleton',
-    css: {
+    styles: {
         src:  src + '/scss',
         dest: assets + '/css',
     },
-    js: {
+    scripts: {
         src:  src + '/js',
         dest: assets + '/js',
     },
-    svg: {
-        src:  src + '/svg',
+    images: {
+        src:  src + '/img',
         dest: assets + '/img',
     },
-    img: {
-        src:  src + '/img',
+    svg: {
+        src:  src + '/svg',
         dest: assets + '/img',
     },
     sprite: {
@@ -31,4 +29,4 @@ module.exports = {
         src:  src,
         dest: assets + '/favicons',
     }
-};
+}
