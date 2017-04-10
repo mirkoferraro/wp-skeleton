@@ -36,6 +36,7 @@ composer.lock
 
 # Logs
 log
+logs
 
 # NPM/Yarn
 node_modules
