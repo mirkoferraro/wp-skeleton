@@ -34,6 +34,9 @@ $tables = array_filter( $tables, function( $table_name ) use ( $prefix_from ) {
     return strpos( $table_name, $prefix_from ) === 0; 
 });
 
+
+$wpdb->query( "UPDATE {$prefix_from}options SET option_name = '{$prefix_to}user_roles' WHERE option_name = '{$prefix_from}user_roles'" );
+
 foreach ( $tables as $table_name ) {
     $new_table_name = $prefix_to . substr( $table_name, strlen( $prefix_from ) );
     $wpdb->query( "RENAME TABLE $table_name TO $new_table_name" );
