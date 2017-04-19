@@ -78,12 +78,32 @@ wp db import db/dump.sql
 ```
 
 
-## Migrations
+## Skeleton CLI
+Skeleton has its own CLI
+
+```
+php skeleton <command>
+```
+
+Here a list of the supported commands
+
+
+### Migrations
 If you have to do some version migration on your WP site (generally on the database side), you can use the migrations system.
 
 Create a php file in the **migrations** folder, name it using a date-time pattern (yyyymmddhhmm.php) in order to keep the migration files ordered. In your script you can use all the WP functions you need.
 
-Launch the migration.php file from the terminal: ```php migration.php```
+Launch the migration.php file from the terminal: ```php skeleton migration```
+
+
+### Prefix
+You can change your database tables' prefix everytime you want with this simple command:
+
+```php skeleton prefix <newprefix>```
+
+This command will:
+ * Replace the prefix in each table of your sql database
+ * Replace the prefix in the db.php configuration file
 
 
 ## Queries

@@ -1,0 +1,30 @@
+<?php
+
+if ( php_sapi_name() !== 'cli' ) {
+    die( 'Meant to be run from command line' );
+}
+
+$_SERVER['SERVER_PROTOCOL'] = '';
+define( 'WP_USE_THEMES', false );
+require_once( __DIR__ . '/public/core/wp-load.php' );
+
+define( 'SKELETON_CLI', true );
+
+if ( count( $argv ) < 2 ) {
+    echo 'php skeleton <command>';
+    die();
+}
+
+
+array_shift( $argv );
+$command = array_shift( $argv );
+
+$command_path = __DIR__ . '/jobs/' . $command . '.php';
+
+if ( ! file_exists( $command_path ) ) {
+    echo 'Invalid command';
+    die();
+}
+
+require( __DIR__ . '/jobs/' . $command . '.php' );
+die;

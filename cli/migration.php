@@ -1,7 +1,16 @@
 <?php
 
-define( 'WP_USE_THEMES', false );
-require_once( __DIR__ . '/../public/core/wp-load.php' );
+if ( ! defined( 'SKELETON_CLI' ) ) {
+    echo 'Invalid call, use:';
+    echo 'php skeleton prefix';
+    die;
+}
+
+
+if ( count( $argv ) !== 0 ) {
+    echo 'Invalid data input';
+    die;
+}
 
 echo "Migration start\n";
 
