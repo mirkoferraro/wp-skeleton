@@ -1,7 +1,11 @@
-<div class="swiper-container">
+<div class="swiper-container" style="height: <?= $height ?>px">
     <div class="swiper-wrapper">
-        <?php foreach ( $slides as $slide ) : ?>
-        <div class="swiper-slide"><?= $slide ?></div>
+        <?php foreach ( $slides as $slide ) :
+            if ( is_array( $slide['style'] ) ) {
+                $slide['style'] = implode( ';', $slide['style'] );
+            }
+            ?>
+        <div class="swiper-slide" style="<?= $slide['style'] ?>"><?= $slide['content'] ?></div>
         <?php endforeach; ?>
     </div>
 
