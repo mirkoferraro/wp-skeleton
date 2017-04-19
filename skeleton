@@ -19,12 +19,12 @@ if ( count( $argv ) < 2 ) {
 array_shift( $argv );
 $command = array_shift( $argv );
 
-$command_path = __DIR__ . '/jobs/' . $command . '.php';
+$command_path = __DIR__ . '/cli/' . $command . '.php';
 
 if ( ! file_exists( $command_path ) ) {
     echo 'Invalid command';
     die();
 }
 
-require( __DIR__ . '/jobs/' . $command . '.php' );
+require( __DIR__ . '/cli/' . $command . '.php' );
 die;
