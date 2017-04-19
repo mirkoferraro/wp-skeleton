@@ -197,6 +197,10 @@ data = {
 		php: {
 			files: paths.src + '/**/*.php',
 			tasks: ['browserSyncReload']
+		},
+		move: {
+			files: paths.move.src + '/**/*.*',
+			tasks: ['move', 'browserSyncReload']
 		}
 	}
 }

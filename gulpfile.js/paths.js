@@ -28,5 +28,9 @@ module.exports = {
     favicon: {
         src:  src,
         dest: assets + '/favicons',
+    },
+    move: {
+        src:  src + '/static',
+        dest: assets,
     }
 }
