@@ -28,6 +28,37 @@ This project is the result of more than one year of high-level work with WordPre
  * Use ```composer install``` command to install the composer vendors
 
 
+## The Base theme and the src directory
+Skeleton uses a custom theme that move all the logic on *src* directory.
+
+In *src* you can store all your assets and your PHP files, you don't need to look for other stuffs in other directories.
+
+The structure of *src* directory is as follow:
+ 
+```
+/src
+    /img
+        /* your images */
+    /includes
+        /core
+            load.php /* this will run after mu-plugin skeleton is loaded */
+        /init
+            load.php /* this will run after the init action */
+        /theme
+            load.php /* this will run after theme function.php is loaded */
+    /js
+        /* your javascript */
+    /scss
+        /* your styles */
+    /static
+        /* your static files */
+    /svg
+        /* your svg */
+    /views
+        /* the theme PHP files */
+```
+
+
 ## Plugin installation
 Plugins are manages by Composer, using the [WpPackagist](https://wpackagist.org/) repository.
 
