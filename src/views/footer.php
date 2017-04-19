@@ -1,4 +1,4 @@
-<footer class="footer" role="contentinfo">
+<footer class="footer column" role="contentinfo">
 	<p class="copyright">
 		<span><?= _t('Powered by'); ?> </span> <a href="//skeleton.com" title="Skeleton">Skeleton</a>.
 	</p>
