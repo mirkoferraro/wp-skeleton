@@ -1,9 +1,9 @@
 # Application
-assets_versions.php
 config/db.php
 config/gulp.js
 config/local.php
 config/keys.php
+config/versions.php
 local-config.php
 ignore
 performance_output.json

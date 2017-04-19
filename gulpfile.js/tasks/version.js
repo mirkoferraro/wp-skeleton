@@ -41,7 +41,7 @@ module.exports = function ($, config) {
     		phpcontent += 'define("' + varname + '_VERSION", "' + ver + '");\n';
         }
 
-		fs.writeFileSync('./assets_versions.php', phpcontent);
+		fs.writeFileSync('./config/versions.php', phpcontent);
 
     	return merge(tasks);
     };
