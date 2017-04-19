@@ -140,6 +140,20 @@ Use ```gulp``` (default task) on your development machine in order to compile al
 
 Use ```gulp build``` on your production server (svg, img, favicon, js, css and version).
 
+Here a list of the gulp's tasks
+
+ * build: executes the images, sprite, svg, favicon, styles, scripts and version tasks
+ * favicon: generate the favicon (source: *src/favicon.png*)
+ * images: compress the images (source: *src/img/*)
+ * move: move all the static files from *src/static/* to *public/assets/* mantaining the same folder hierarchy
+ * performance: check for web site performance with [Louis](https://www.npmjs.com/package/gulp-louis)
+ * scripts: compile Javascript files using Browserify (source: *src/js*)
+ * sprite: create a sprite map of images (source: *src/img/<foldername>*)
+ * styles: complile SASS files (source: *src/scss/*)
+ * svg: generate a symbol containing all the svg (source: *src/svg/*) 
+ * version: create versioned files and put the suffix in *config/version.php*
+ * watch: executes the tasks when file changes
+
 
 ## Administrator User
 Create your administrator user:
