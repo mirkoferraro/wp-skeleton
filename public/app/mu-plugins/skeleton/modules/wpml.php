@@ -51,7 +51,7 @@ function scan_skeleton_theme_for_strings() {
                 $this->scan_theme_files();
 
                 $theme_localization_domains = array();
-                if(isset($string_settings[ 'theme_localization_domains' ])) {
+                if ( isset( $string_settings[ 'theme_localization_domains' ] ) ) {
                     $theme_localization_domains = $string_settings[ 'theme_localization_domains' ];
                 }
 
@@ -128,67 +128,66 @@ function scan_skeleton_theme_for_strings() {
             
         }
 
-        function _skeleton_potx_process_file($file_path,
-                                    $strip_prefix = 0,
-                                    $save_callback = '_potx_save_string',
-                                    $version_callback = '_potx_save_version',
-                                    $default_domain = '') {
+        function _skeleton_potx_process_file($file_path, $strip_prefix = 0, $save_callback = '_potx_save_string', $version_callback = '_potx_save_version', $default_domain = '') {
 
-        global $_potx_tokens, $_potx_lookup;
+            global $_potx_tokens, $_potx_lookup;
 
-        // Always grab the CVS version number from the code
-            if ( !wpml_st_file_path_is_valid( $file_path ) ) {
+            // Always grab the CVS version number from the code
+            if ( ! wpml_st_file_path_is_valid( $file_path ) ) {
                 return;
             }
-        $code = file_get_contents($file_path);
-        $file_name = $strip_prefix > 0 ? substr($file_path, $strip_prefix) : $file_path;
-        _potx_find_version_number($code, $file_name, $version_callback);
 
-        // Extract raw PHP language tokens.
-        $raw_tokens = token_get_all($code);
-        unset($code);
+            $code = file_get_contents( $file_path );
+            $file_name = $strip_prefix > 0 ? substr( $file_path, $strip_prefix ) : $file_path;
+            _potx_find_version_number( $code, $file_name, $version_callback );
 
-        // Remove whitespace and possible HTML (the later in templates for example),
-        // count line numbers so we can include them in the output.
-        $_potx_tokens = array();
-        $_potx_lookup = array();
-        $token_number = 0;
-        $line_number = 1;
-                // Fill array for finding token offsets quickly.
-                $src_tokens = array(
-                    '__', 'esc_attr__', 'esc_html__', '_e', 'esc_attr_e', 'esc_html_e',
-                    '_x', 'esc_attr_x', 'esc_html_x', '_ex',
-                    '_n', '_nx', '_t'
-                );
-        foreach ($raw_tokens as $token) {
-            if ((!is_array($token)) || (($token[0] != T_WHITESPACE) && ($token[0] != T_INLINE_HTML))) {
-            if (is_array($token)) {
-                $token[] = $line_number;
+            // Extract raw PHP language tokens.
+            $raw_tokens = token_get_all( $code );
+            unset( $code );
 
-                if ($token[0] == T_STRING || ($token[0] == T_VARIABLE && in_array($token[1], $src_tokens))) {
-                if (!isset($_potx_lookup[$token[1]])) {
-                    $_potx_lookup[$token[1]] = array();
+            // Remove whitespace and possible HTML (the later in templates for example),
+            // count line numbers so we can include them in the output.
+            $_potx_tokens = array();
+            $_potx_lookup = array();
+            $token_number = 0;
+            $line_number  = 1;
+            // Fill array for finding token offsets quickly.
+            $src_tokens = array(
+                '__', 'esc_attr__', 'esc_html__', '_e', 'esc_attr_e', 'esc_html_e',
+                '_x', 'esc_attr_x', 'esc_html_x', '_ex',
+                '_n', '_nx', '_s'
+            );
+            foreach ( $raw_tokens as $token ) {
+                if ( ( ! is_array( $token ) ) || ( ( $token[0] != T_WHITESPACE ) && ( $token[0] != T_INLINE_HTML ) ) ) {
+                    if ( is_array( $token ) ) {
+                        $token[] = $line_number;
+
+                        if ( $token[0] == T_STRING || ( $token[0] == T_VARIABLE && in_array( $token[1], $src_tokens ) ) ) {
+                            if ( ! isset( $_potx_lookup[$token[1]] ) ) {
+                                $_potx_lookup[$token[1]] = array();
+                            }
+                            $_potx_lookup[$token[1]][] = $token_number;
+                        }
+                    }
+                    $_potx_tokens[] = $token;
+                    $token_number++;
                 }
-                $_potx_lookup[$token[1]][] = $token_number;
+                // Collect line numbers.
+                if ( is_array( $token ) ) {
+                    $line_number += count( explode( "\n", $token[1] ) ) - 1;
+                }
+                else {
+                    $line_number += count( explode( "\n", $token ) ) - 1;
                 }
             }
-            $_potx_tokens[] = $token;
-            $token_number++;
-            }
-            // Collect line numbers.
-            if (is_array($token)) {
-            $line_number += count(explode("\n", $token[1])) - 1;
-            }
-            else {
-            $line_number += count(explode("\n", $token)) - 1;
-            }
-        }
-        unset($raw_tokens);
 
-        if(!empty($src_tokens))
-        foreach($src_tokens as $tk){
-            _potx_find_t_calls_with_context($file_name, $save_callback, $tk, $default_domain);
-        }
+            unset( $raw_tokens );
+
+            if ( ! empty( $src_tokens ) ) {
+                foreach( $src_tokens as $tk ) {
+                    _potx_find_t_calls_with_context( $file_name, $save_callback, $tk, $default_domain );
+                }
+            }
 
         }
 
