@@ -50,8 +50,16 @@ $config = array(
     'text_domains' => array(
         get_stylesheet() => get_template_directory() . '/languages'
     ),
-    'fonts_face_observer' => array(
-        'Lato' => array( 300, 400, 700 )
+    'fonts' => array(
+        'links' => array(
+            'https://fonts.googleapis.com/css?family=Lato:400,300,700'
+        ),
+        'face_observer' => array(
+            'class' => 'fonts-loaded',
+            'fonts' => array(
+                'Lato' => array( 300, 400, 700 )
+            )
+        ),
     ),
     'stylesheets' => array(
         'main' => array(

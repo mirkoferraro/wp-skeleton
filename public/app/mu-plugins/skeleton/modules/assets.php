@@ -153,6 +153,8 @@ function font_loader() {
 		return;
 	}
 
+    $font_loaded_class = get_config( 'fonts', 'face_observer', 'class', 'fonts-loaded' );
+
 	?>
 	<script type="text/javascript">
 	<?php include PUBLIC_DIR . '/../node_modules/fontfaceobserver/fontfaceobserver.standalone.js'; ?>
@@ -187,16 +189,15 @@ function font_loader() {
 			font.load(null, 3000).then(function () {
 				loaded++;
 				fonts_loaded[name] = true;
-				// document.documentElement.className += ' ' + name;
 
 				if (count == loaded) {
-					document.documentElement.className += ' fonts-loaded';
+					document.documentElement.className += ' <?= $font_loaded_class; ?>';
 				}
 			}, function() {
 				loaded++;
 
 				if (count == loaded) {
-					document.documentElement.className += ' fonts-loaded';
+					document.documentElement.className += ' <?= $font_loaded_class; ?>';
 				}
 			});
 
@@ -204,6 +205,17 @@ function font_loader() {
 	}
 	</script>
 	<?php
+}
+
+add_action( 'wp_head', 'wp_head_font_links' );
+function wp_head_font_links() {
+	$fonts = get_config( 'fonts', 'links', array() );
+
+	$fonts = array_map( function( $font ) {
+		return "<link href='$font' rel='preload' type='text/css'>";
+	}, $fonts );
+
+	echo implode( $fonts );
 }
 
 add_action( 'wp_footer', 'browser_sync_snippet', 1000 );
@@ -228,15 +240,4 @@ function browser_sync_snippet() {
 		document.write("<script async src='http://localhost:3000/browser-sync/browser-sync-client.js?v=<?= $browser_sync_json->version; ?>'><\/script>");
 	//]]></script>
 	<?php
-}
-
-function critical_css_path() {
-	return assets_path( 'css' ) . '/critical.css';
-}
-
-function print_critical_style() {
-	$critical_path = critical_css_path();
-	if ( file_exists( $critical_path ) ) : ?>
-	<style><?php include $critical_path; ?></style>
-	<?php endif;
 }

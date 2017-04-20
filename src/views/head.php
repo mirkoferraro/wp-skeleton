@@ -27,11 +27,6 @@ $favicons_url = assets_url( 'favicon' );
 <meta name="msapplication-TileColor" content="#2d89ef">
 <meta name="msapplication-TileImage" content="<?= $favicons_url ?>/mstile-144x144.png">
 <meta name="theme-color" content="#ffffff">
-
-<link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="<?php bloginfo('description'); ?>">
-
-<?php print_critical_style(); ?>
-<?php wp_head(); ?>

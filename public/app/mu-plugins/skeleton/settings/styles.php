@@ -38,7 +38,7 @@ function wp_enqueue_async_style( $handle, $src = false, $deps = array(), $ver = 
 add_action( 'wp_enqueue_scripts', 'load_styles', 1000 );
 function load_styles() {
     
-    $fonts = get_config( 'stylesheets', array() );
+    $fonts = get_config( 'fonts', 'face_observer', 'fonts', array() );
     foreach( $fonts as $name => $weights ) {
         add_font_face_observer( $name, $weights );
     }
