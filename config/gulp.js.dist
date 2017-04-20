@@ -1,6 +1,14 @@
-module.exports = function($, paths) {
-    return {
-    	localhost: 'http://skeleton.dev',
-    	show_logo: true
+module.exports = function(data) {
+
+    data.localhost = 'http://skeleton.dev'
+    data.show_logo = false
+    data.browserSync = {
+        proxy: data.localhost,
+        open: false,
+        socket: {
+            domain: 'localhost:3000'
+        }
     }
+
+    return data
 };

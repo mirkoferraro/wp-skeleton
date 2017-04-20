@@ -1,8 +1,8 @@
 var
-fs = require('fs'),
+fs    = require('fs'),
 paths = require('./paths'),
 
-data = {
+data  = {
 	show_logo: true,
 	localhost: 'http://localhost',
 	load_plugins: [ 'gulp', 'gulp-*', 'gulp.*', 'browser-sync', 'imagemin-pngquant' ],
