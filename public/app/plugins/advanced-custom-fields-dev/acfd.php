@@ -110,6 +110,7 @@ class ACFD {
 
 	static function registerGroups() {
 		$register_function = false;
+		$option_plugin_not_loaded = false;
 
 		if ( function_exists( 'acf_add_local_field_group' ) ) { // ACF Pro
 			$register_function = 'acf_add_local_field_group';
@@ -161,10 +162,18 @@ class ACFD {
 					}
 				}
 			} else {
-				throw new Exception( 'You are using ACF with options pages but ACF Options Plugin is not loaded' );
+				$option_plugin_not_loaded = true;
 			}
 			
 			call_user_func( $register_function, $group_data );
+		}
+
+		if ( $option_plugin_not_loaded ) {
+			add_action( 'admin_notices', function() {
+				$class   = 'notice notice-error is-dismissible';
+				$message = 'You are using ACFD with options pages but ACF Options Plugin is not loaded.';
+				printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $message ) ); 
+			} );
 		}
 
 		if ( self::$customfile ) {
