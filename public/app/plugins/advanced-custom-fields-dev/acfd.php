@@ -38,7 +38,8 @@ class ACFD {
 
 		include( 'includes/hide_on_screen_fix.php' );
 
-		add_action('acf/init', array( get_called_class(), 'registerGroups' ) );
+		add_action('acf/init', array( get_called_class(), 'registerGroups' ) ); // ACF Pro
+		add_action('acf/register_fields', array( get_called_class(), 'registerGroups' ) ); // ACF
 	}
 
 	static function isActive() {
@@ -108,9 +109,15 @@ class ACFD {
 	}
 
 	static function registerGroups() {
-		// Throws exception if ACF is not loaded
-		if ( ! function_exists('acf_add_local_field_group') ) {
-			throw new Exception('Advanced Custom Field not loaded');
+		$register_function = false;
+
+		if ( function_exists( 'acf_add_local_field_group' ) ) { // ACF Pro
+			$register_function = 'acf_add_local_field_group';
+		} elseif ( function_exists( 'register_field_group' ) ) { // ACF
+			$register_function = 'register_field_group';
+		} else {
+			// Throws exception if ACF is not loaded
+			throw new Exception( 'Advanced Custom Field not loaded' );
 		}
 
 		$fields_code = '';
@@ -130,30 +137,34 @@ class ACFD {
 			}
 
 			if ( self::$customfile ) {
-				$fields_code .= ' acf_add_local_field_group(' . var_export( $group_data, true ) . ');';
+				$fields_code .= ' ' . $register_function . '(' . var_export( $group_data, true ) . ');';
 			}
 
 			// Create ACF Options page if used
-			foreach ( $group_data['location'] as &$group ) {
-				foreach ($group as &$rule) {
-					if ( $rule['param'] == 'options_page' && $rule['operator'] == '==' ) {
-						if ( strpos( $rule['value'], 'acf-options-' ) === 0 ) {
-							$pagename = substr( $rule['value'], 12 );
-							$pagename = str_replace( '-', ' ', $pagename );
-							acf_add_options_sub_page( $pagename );
-							$fields_code .= ' acf_add_options_sub_page("' . $pagename . '");';
+			if ( function_exists( 'acf_add_options_page' ) && function_exists( 'acf_add_options_sub_page' ) ) {
+				foreach ( $group_data['location'] as &$group ) {
+					foreach ($group as &$rule) {
+						if ( $rule['param'] == 'options_page' && $rule['operator'] == '==' ) {
+							if ( strpos( $rule['value'], 'acf-options-' ) === 0 ) {
+								$pagename = substr( $rule['value'], 12 );
+								$pagename = str_replace( '-', ' ', $pagename );
+								acf_add_options_sub_page( $pagename );
+								$fields_code .= ' acf_add_options_sub_page("' . $pagename . '");';
 
-							// Lower the value in order to adding local field group
-							$rule['value'] = strtolower( $rule['value'] );
-						} else {
-							acf_add_options_page();
-							$fields_code .= ' acf_add_options_page();';
+								// Lower the value in order to adding local field group
+								$rule['value'] = strtolower( $rule['value'] );
+							} else {
+								acf_add_options_page();
+								$fields_code .= ' acf_add_options_page();';
+							}
 						}
 					}
 				}
+			} else {
+				throw new Exception( 'You are using ACF with options pages but ACF Options Plugin is not loaded' );
 			}
 			
-			acf_add_local_field_group( $group_data );
+			call_user_func( $register_function, $group_data );
 		}
 
 		if ( self::$customfile ) {

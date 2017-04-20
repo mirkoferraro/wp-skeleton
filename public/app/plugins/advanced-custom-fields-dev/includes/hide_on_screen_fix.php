@@ -3,6 +3,10 @@
 add_action( 'admin_print_scripts', 'print_full_hide_on_screen_style' );
 function print_full_hide_on_screen_style() {
 
+	if ( ! function_exists( 'acf_get_field_groups' ) ) {
+		return;
+	}
+	
 	$style = "";
 	$field_groups = acf_get_field_groups();
 
